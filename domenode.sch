@@ -256,4 +256,172 @@ F 3 "https://cdn-shop.adafruit.com/datasheets/WS2812B.pdf" H 8150 5075 50  0001 
 	1    8050 5450
 	1    0    0    -1  
 $EndComp
+$Comp
+L opto:LDR03 R?
+U 1 1 5B5CBDFB
+P 1500 3950
+F 0 "R?" H 1570 3996 50  0000 L CNN
+F 1 "LDR03" H 1570 3905 50  0000 L CNN
+F 2 "Opto-Devices:Resistor_LDR_10x8.5_RM7.6" V 1675 3950 50  0001 C CNN
+F 3 "http://www.elektronica-componenten.nl/WebRoot/StoreNL/Shops/61422969/54F1/BA0C/C664/31B9/2173/C0A8/2AB9/2AEF/LDR03IMP.pdf" H 1570 3859 50  0001 L CNN
+	1    1500 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L opto:LDR03 R?
+U 1 1 5B5CBE69
+P 1100 4050
+F 0 "R?" H 1170 4096 50  0000 L CNN
+F 1 "LDR03" H 1170 4005 50  0000 L CNN
+F 2 "Opto-Devices:Resistor_LDR_10x8.5_RM7.6" V 1275 4050 50  0001 C CNN
+F 3 "http://www.elektronica-componenten.nl/WebRoot/StoreNL/Shops/61422969/54F1/BA0C/C664/31B9/2173/C0A8/2AB9/2AEF/LDR03IMP.pdf" H 1170 3959 50  0001 L CNN
+	1    1100 4050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 5450 5050 5450
+Wire Wire Line
+	5650 5450 5950 5450
+Wire Wire Line
+	6550 5450 6850 5450
+Wire Wire Line
+	7450 5450 7750 5450
+Text Notes 4700 6000 0    50   ~ 0
+60mA peak (all three LEDs) per pixel\n
+Wire Wire Line
+	4450 5750 5350 5750
+Wire Wire Line
+	6250 5750 5350 5750
+Connection ~ 5350 5750
+Wire Wire Line
+	6250 5750 7150 5750
+Connection ~ 6250 5750
+Wire Wire Line
+	7150 5750 8050 5750
+Connection ~ 7150 5750
+Wire Wire Line
+	8050 5150 7150 5150
+Wire Wire Line
+	7150 5150 6250 5150
+Connection ~ 7150 5150
+Wire Wire Line
+	6250 5150 5350 5150
+Connection ~ 6250 5150
+Wire Wire Line
+	4450 5150 5350 5150
+Connection ~ 5350 5150
+$Comp
+L Device:R R?
+U 1 1 5B5D393B
+P 1100 3700
+F 0 "R?" H 1170 3746 50  0000 L CNN
+F 1 "100k" H 1170 3655 50  0000 L CNN
+F 2 "" V 1030 3700 50  0001 C CNN
+F 3 "~" H 1100 3700 50  0001 C CNN
+	1    1100 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1100 3900 1100 3850
+Connection ~ 1100 3900
+$Comp
+L Device:R R?
+U 1 1 5B5D5183
+P 1500 3600
+F 0 "R?" H 1570 3646 50  0000 L CNN
+F 1 "100k" H 1570 3555 50  0000 L CNN
+F 2 "" V 1430 3600 50  0001 C CNN
+F 3 "~" H 1500 3600 50  0001 C CNN
+	1    1500 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 3750 1500 3800
+Connection ~ 1500 3800
+Wire Wire Line
+	1500 3450 1300 3450
+Wire Wire Line
+	1100 3450 1100 3550
+Wire Wire Line
+	1500 4100 1500 4200
+Wire Wire Line
+	1500 4200 1300 4200
+$Comp
+L power:GND #PWR?
+U 1 1 5B5D943F
+P 1300 4200
+F 0 "#PWR?" H 1300 3950 50  0001 C CNN
+F 1 "GND" H 1300 4050 50  0000 C CNN
+F 2 "" H 1300 4200 50  0001 C CNN
+F 3 "" H 1300 4200 50  0001 C CNN
+	1    1300 4200
+	1    0    0    -1  
+$EndComp
+Connection ~ 1300 4200
+Wire Wire Line
+	1300 4200 1100 4200
+$Comp
+L power:VCC #PWR?
+U 1 1 5B5D9468
+P 1300 3450
+F 0 "#PWR?" H 1300 3300 50  0001 C CNN
+F 1 "VCC" H 1300 3600 50  0000 C CNN
+F 2 "" H 1300 3450 50  0001 C CNN
+F 3 "" H 1300 3450 50  0001 C CNN
+	1    1300 3450
+	1    0    0    -1  
+$EndComp
+Connection ~ 1300 3450
+Wire Wire Line
+	1300 3450 1100 3450
+Wire Notes Line
+	900  3200 1850 3200
+Wire Notes Line
+	1850 3200 1850 4400
+Wire Notes Line
+	1850 4400 900  4400
+Wire Notes Line
+	900  4400 900  3200
+Wire Wire Line
+	1100 3900 2600 3900
+Wire Wire Line
+	1500 3800 2600 3800
+Text GLabel 4000 5450 0    50   Input ~ 0
+I2CLED
+Text GLabel 4550 3750 2    50   Input ~ 0
+I2CLED
+Wire Wire Line
+	4450 3750 4550 3750
+Wire Wire Line
+	4000 5450 4150 5450
+Text Notes 900  3150 0    50   ~ 0
+Light Level\n
+Wire Notes Line
+	3600 5100 8750 5100
+Wire Notes Line
+	8750 5100 8750 6100
+Wire Notes Line
+	8750 6100 3600 6100
+Wire Notes Line
+	3600 6100 3600 5100
+Text Notes 3600 5050 0    50   ~ 0
+LEDs
+Wire Wire Line
+	7700 4450 7900 4450
+Wire Wire Line
+	7900 4450 7900 3400
+Wire Wire Line
+	7900 3400 7700 3400
+$Comp
+L power:GND #PWR?
+U 1 1 5B5E3115
+P 7900 4450
+F 0 "#PWR?" H 7900 4200 50  0001 C CNN
+F 1 "GND" H 7900 4300 50  0000 C CNN
+F 2 "" H 7900 4450 50  0001 C CNN
+F 3 "" H 7900 4450 50  0001 C CNN
+	1    7900 4450
+	1    0    0    -1  
+$EndComp
+Connection ~ 7900 4450
 $EndSCHEMATC
