@@ -1,4 +1,4 @@
-update=28/07/2018 11:03:06
+update=9/6/2016 4:56:26 AM
 version=1
 last_client=kicad
 [pcbnew]
@@ -58,5 +58,4 @@ LibName26=opto
 LibName27=atmel
 LibName28=contrib
 LibName29=valves
-LibName30=kicad_libraries/lpc11c22_lqfp48
-LibName31=kicad_libraries/ESP32-kiCAD-Footprints-master/ESP32-Footprints/ESP32-footprints-Shem-Lib
+LibName30=ESP32-footprints-Shem-Lib
