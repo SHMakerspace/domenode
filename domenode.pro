@@ -1,4 +1,4 @@
-update=28/07/2018 11:03:06
+update=28/07/2018 11:27:04
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,4 @@ LibName28=contrib
 LibName29=valves
 LibName30=kicad_libraries/lpc11c22_lqfp48
 LibName31=kicad_libraries/ESP32-kiCAD-Footprints-master/ESP32-Footprints/ESP32-footprints-Shem-Lib
+LibName32=kicad_libraries/sn65hvd230
