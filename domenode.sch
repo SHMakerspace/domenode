@@ -424,4 +424,27 @@ F 3 "" H 7900 4450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 7900 4450
+$Comp
+L conn:CONN_01X05 J?
+U 1 1 5B5E45B7
+P 7000 1800
+F 0 "J?" H 7077 1841 50  0000 L CNN
+F 1 "RGB_SHIELD" H 7077 1750 50  0000 L CNN
+F 2 "" H 7000 1800 50  0001 C CNN
+F 3 "" H 7000 1800 50  0001 C CNN
+	1    7000 1800
+	1    0    0    -1  
+$EndComp
+Text GLabel 6700 1700 0    50   Input ~ 0
+RED
+Text GLabel 6700 1800 0    50   Input ~ 0
+GREEN
+Text GLabel 6700 1900 0    50   Input ~ 0
+BLUE
+Wire Wire Line
+	6800 1700 6700 1700
+Wire Wire Line
+	6800 1800 6700 1800
+Wire Wire Line
+	6700 1900 6800 1900
 $EndSCHEMATC
