@@ -1713,4 +1713,153 @@ Wire Notes Line
 	3200 4950 2500 4950
 Text Notes 2500 4950 0    50   ~ 0
 Pullup Resistors
+$Comp
+L Interface_Optical:TSDP341xx U?
+U 1 1 5C2F517D
+P 3900 7100
+F 0 "U?" V 3933 6820 50  0000 R CNN
+F 1 "TSDP341xx" V 3842 6820 50  0000 R CNN
+F 2 "OptoDevice:Vishay_MOLD-3Pin" H 3850 6725 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/82667/tsdp341.pdf" H 4550 7400 50  0001 C CNN
+	1    3900 7100
+	0    -1   -1   0   
+$EndComp
+Text GLabel 3900 6650 1    50   Input ~ 0
+IR_RX
+Text GLabel 4700 6650 1    50   Input ~ 0
+IR_TX
+$Comp
+L power:VCC #PWR?
+U 1 1 5C2F8CE4
+P 3700 6650
+F 0 "#PWR?" H 3700 6500 50  0001 C CNN
+F 1 "VCC" H 3700 6800 50  0000 C CNN
+F 2 "" H 3700 6650 50  0001 C CNN
+F 3 "" H 3700 6650 50  0001 C CNN
+	1    3700 6650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 6700 3700 6650
+$Comp
+L power:GND #PWR?
+U 1 1 5C3121F2
+P 4100 6650
+F 0 "#PWR?" H 4100 6400 50  0001 C CNN
+F 1 "GND" H 4105 6477 50  0000 C CNN
+F 2 "" H 4100 6650 50  0001 C CNN
+F 3 "" H 4100 6650 50  0001 C CNN
+	1    4100 6650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4100 6700 4100 6650
+$Comp
+L Device:Q_NPN_BCE Q?
+U 1 1 5C32BEFB
+P 4900 7200
+F 0 "Q?" H 5091 7246 50  0000 L CNN
+F 1 "2N2222" H 5091 7155 50  0000 L CNN
+F 2 "" H 5100 7300 50  0001 C CNN
+F 3 "~" H 4900 7200 50  0001 C CNN
+	1    4900 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5C32C271
+P 4700 6850
+F 0 "R?" H 4770 6896 50  0000 L CNN
+F 1 "1K" H 4770 6805 50  0000 L CNN
+F 2 "" V 4630 6850 50  0001 C CNN
+F 3 "~" H 4700 6850 50  0001 C CNN
+	1    4700 6850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4700 7200 4700 7000
+Wire Wire Line
+	4700 6650 4700 6700
+$Comp
+L power:GND #PWR?
+U 1 1 5C35F523
+P 5000 7450
+F 0 "#PWR?" H 5000 7200 50  0001 C CNN
+F 1 "GND" H 5005 7277 50  0000 C CNN
+F 2 "" H 5000 7450 50  0001 C CNN
+F 3 "" H 5000 7450 50  0001 C CNN
+	1    5000 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 7400 5000 7450
+$Comp
+L Device:R R?
+U 1 1 5C3791BC
+P 5000 6450
+F 0 "R?" H 5070 6496 50  0000 L CNN
+F 1 "100" H 5070 6405 50  0000 L CNN
+F 2 "" V 4930 6450 50  0001 C CNN
+F 3 "~" H 5000 6450 50  0001 C CNN
+	1    5000 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L LED:IR204A D?
+U 1 1 5C379290
+P 5000 6750
+F 0 "D?" V 4996 6673 50  0000 R CNN
+F 1 "IRLED" V 4905 6673 50  0000 R CNN
+F 2 "LED_THT:LED_D3.0mm_IRBlack" H 5000 6925 50  0001 C CNN
+F 3 "http://www.everlight.com/file/ProductFile/IR204-A.pdf" H 4950 6750 50  0001 C CNN
+	1    5000 6750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	5000 6950 5000 7000
+Wire Wire Line
+	5000 6600 5000 6650
+$Comp
+L power:VCC #PWR?
+U 1 1 5C3FCF6A
+P 5000 6250
+F 0 "#PWR?" H 5000 6100 50  0001 C CNN
+F 1 "VCC" H 5000 6400 50  0000 C CNN
+F 2 "" H 5000 6250 50  0001 C CNN
+F 3 "" H 5000 6250 50  0001 C CNN
+	1    5000 6250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 6250 5000 6300
+Text GLabel 1050 3100 0    50   Input ~ 0
+IR_TX
+Wire Wire Line
+	1100 3100 1050 3100
+Connection ~ 1100 3100
+Text GLabel 1050 3200 0    50   Input ~ 0
+IR_RX
+Wire Wire Line
+	1100 3200 1050 3200
+Connection ~ 1100 3200
+Wire Notes Line
+	5400 7650 5400 6050
+Wire Notes Line
+	5400 6050 3600 6050
+Wire Notes Line
+	3600 6050 3600 7650
+Wire Notes Line
+	3600 7650 5400 7650
+Text Notes 3600 6050 0    50   ~ 0
+IR Tx/Rx
+Text GLabel 1050 2400 0    50   Input ~ 0
+VP
+Text GLabel 1050 2500 0    50   Input ~ 0
+VN
+Wire Wire Line
+	1100 2400 1050 2400
+Connection ~ 1100 2400
+Wire Wire Line
+	1100 2500 1050 2500
+Connection ~ 1100 2500
 $EndSCHEMATC
