@@ -1368,7 +1368,7 @@ Wire Notes Line
 	11150 1600 6550 1600
 Wire Notes Line
 	6550 1600 6550 600 
-Text Notes 6550 550  0    50   ~ 0
+Text Notes 6550 600  0    50   ~ 0
 Connectors
 Wire Notes Line
 	550  1700 550  550 
@@ -2038,7 +2038,7 @@ SPEAKER
 Wire Wire Line
 	1100 3000 1050 3000
 Connection ~ 1100 3000
-Text GLabel 5450 3500 0    50   Input ~ 0
+Text GLabel 3950 6200 1    50   Input ~ 0
 SPEAKER
 $Comp
 L Device:R R?
@@ -2055,4 +2055,79 @@ Wire Wire Line
 	4650 5100 4650 5200
 Wire Wire Line
 	4350 5150 4350 5200
+$Comp
+L Device:R R?
+U 1 1 5C9AAE16
+P 3950 6400
+F 0 "R?" H 3880 6354 50  0000 R CNN
+F 1 "100" H 3880 6445 50  0000 R CNN
+F 2 "" V 3880 6400 50  0001 C CNN
+F 3 "~" H 3950 6400 50  0001 C CNN
+	1    3950 6400
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:Q_NPN_BCE Q?
+U 1 1 5C9AAF69
+P 4250 6550
+F 0 "Q?" H 4441 6596 50  0000 L CNN
+F 1 "2N706" H 4441 6505 50  0000 L CNN
+F 2 "" H 4450 6650 50  0001 C CNN
+F 3 "~" H 4250 6550 50  0001 C CNN
+	1    4250 6550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Speaker LS?
+U 1 1 5C9AB06B
+P 4550 6800
+F 0 "LS?" H 4720 6796 50  0000 L CNN
+F 1 "Speaker" H 4720 6705 50  0000 L CNN
+F 2 "" H 4550 6600 50  0001 C CNN
+F 3 "~" H 4540 6750 50  0001 C CNN
+	1    4550 6800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 6550 3950 6550
+Wire Wire Line
+	4350 6750 4350 6800
+$Comp
+L power:+5V #PWR?
+U 1 1 5C9E9CB1
+P 4350 6300
+F 0 "#PWR?" H 4350 6150 50  0001 C CNN
+F 1 "+5V" H 4365 6473 50  0000 C CNN
+F 2 "" H 4350 6300 50  0001 C CNN
+F 3 "" H 4350 6300 50  0001 C CNN
+	1    4350 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 6300 4350 6350
+$Comp
+L power:GND #PWR?
+U 1 1 5CA09431
+P 4300 6900
+F 0 "#PWR?" H 4300 6650 50  0001 C CNN
+F 1 "GND" H 4305 6727 50  0000 C CNN
+F 2 "" H 4300 6900 50  0001 C CNN
+F 3 "" H 4300 6900 50  0001 C CNN
+	1    4300 6900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 6900 4300 6900
+Wire Wire Line
+	3950 6200 3950 6250
+Wire Notes Line
+	5050 7300 5050 5700
+Wire Notes Line
+	5050 5700 3800 5700
+Wire Notes Line
+	3800 5700 3800 7300
+Wire Notes Line
+	3800 7300 5050 7300
+Text Notes 3800 5700 0    50   ~ 0
+Speaker
 $EndSCHEMATC
