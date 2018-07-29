@@ -1375,11 +1375,11 @@ Connectors
 Wire Notes Line
 	550  1700 550  550 
 Wire Notes Line
-	550  550  5250 550 
+	550  550  4600 550 
 Wire Notes Line
-	5250 550  5250 1700
+	4600 550  4600 1700
 Wire Notes Line
-	550  1700 5250 1700
+	550  1700 4600 1700
 Wire Notes Line
 	11150 4300 7950 4300
 Wire Notes Line
@@ -1529,4 +1529,188 @@ Wire Wire Line
 Connection ~ 1700 2100
 Wire Wire Line
 	1700 2100 1700 2700
+Text GLabel 4300 3600 2    50   Input ~ 0
+IO2
+Wire Wire Line
+	4250 3600 4300 3600
+Connection ~ 4250 3600
+Text GLabel 5300 700  0    50   Input ~ 0
+IO2
+$Comp
+L Device:LED D?
+U 1 1 5C0BE84F
+P 5400 1200
+F 0 "D?" V 5438 1082 50  0000 R CNN
+F 1 "BLINK" V 5347 1082 50  0000 R CNN
+F 2 "" H 5400 1200 50  0001 C CNN
+F 3 "~" H 5400 1200 50  0001 C CNN
+	1    5400 1200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5C0BE909
+P 5400 850
+F 0 "R?" H 5470 896 50  0000 L CNN
+F 1 "470" H 5470 805 50  0000 L CNN
+F 2 "" V 5330 850 50  0001 C CNN
+F 3 "~" H 5400 850 50  0001 C CNN
+	1    5400 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5C0BE9D7
+P 5400 1400
+F 0 "#PWR?" H 5400 1150 50  0001 C CNN
+F 1 "GND" H 5405 1227 50  0000 C CNN
+F 2 "" H 5400 1400 50  0001 C CNN
+F 3 "" H 5400 1400 50  0001 C CNN
+	1    5400 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 700  5300 700 
+Wire Wire Line
+	5400 1000 5400 1050
+Wire Wire Line
+	5400 1350 5400 1400
+Wire Notes Line
+	4750 550  5750 550 
+Wire Notes Line
+	5750 550  5750 1700
+Wire Notes Line
+	5750 1700 4750 1700
+Wire Notes Line
+	4750 1700 4750 550 
+Text Notes 4750 550  0    50   ~ 0
+Indicator LEDs
+$Comp
+L Device:R R?
+U 1 1 5C1AFFFA
+P 2950 5300
+F 0 "R?" V 2743 5300 50  0000 C CNN
+F 1 "10k" V 2834 5300 50  0000 C CNN
+F 2 "" V 2880 5300 50  0001 C CNN
+F 3 "~" H 2950 5300 50  0001 C CNN
+	1    2950 5300
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 5300 0    50   Input ~ 0
+SW0
+Wire Wire Line
+	2800 5300 2750 5300
+$Comp
+L Device:R R?
+U 1 1 5C1C792C
+P 2950 5600
+F 0 "R?" V 2743 5600 50  0000 C CNN
+F 1 "10k" V 2834 5600 50  0000 C CNN
+F 2 "" V 2880 5600 50  0001 C CNN
+F 3 "~" H 2950 5600 50  0001 C CNN
+	1    2950 5600
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 5600 0    50   Input ~ 0
+SW1
+Wire Wire Line
+	2800 5600 2750 5600
+$Comp
+L Device:R R?
+U 1 1 5C1DF292
+P 2950 5900
+F 0 "R?" V 2743 5900 50  0000 C CNN
+F 1 "10k" V 2834 5900 50  0000 C CNN
+F 2 "" V 2880 5900 50  0001 C CNN
+F 3 "~" H 2950 5900 50  0001 C CNN
+	1    2950 5900
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 5900 0    50   Input ~ 0
+SW2
+Wire Wire Line
+	2800 5900 2750 5900
+$Comp
+L Device:R R?
+U 1 1 5C1F6F40
+P 2950 6200
+F 0 "R?" V 2743 6200 50  0000 C CNN
+F 1 "10k" V 2834 6200 50  0000 C CNN
+F 2 "" V 2880 6200 50  0001 C CNN
+F 3 "~" H 2950 6200 50  0001 C CNN
+	1    2950 6200
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 6200 0    50   Input ~ 0
+SW3
+Wire Wire Line
+	2800 6200 2750 6200
+$Comp
+L Device:R R?
+U 1 1 5C20EF33
+P 2950 6500
+F 0 "R?" V 2743 6500 50  0000 C CNN
+F 1 "10k" V 2834 6500 50  0000 C CNN
+F 2 "" V 2880 6500 50  0001 C CNN
+F 3 "~" H 2950 6500 50  0001 C CNN
+	1    2950 6500
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 6500 0    50   Input ~ 0
+SW4
+Wire Wire Line
+	2800 6500 2750 6500
+$Comp
+L Device:R R?
+U 1 1 5C2272CC
+P 2950 6800
+F 0 "R?" V 2743 6800 50  0000 C CNN
+F 1 "10k" V 2834 6800 50  0000 C CNN
+F 2 "" V 2880 6800 50  0001 C CNN
+F 3 "~" H 2950 6800 50  0001 C CNN
+	1    2950 6800
+	0    1    1    0   
+$EndComp
+Text GLabel 2750 6800 0    50   Input ~ 0
+EN
+Wire Wire Line
+	2800 6800 2750 6800
+Wire Wire Line
+	3100 6800 3100 6500
+Wire Wire Line
+	3100 6500 3100 6200
+Connection ~ 3100 6500
+Wire Wire Line
+	3100 5900 3100 6200
+Connection ~ 3100 6200
+Wire Wire Line
+	3100 5900 3100 5600
+Connection ~ 3100 5900
+Wire Wire Line
+	3100 5300 3100 5600
+Connection ~ 3100 5600
+$Comp
+L power:VCC #PWR?
+U 1 1 5C2BB79B
+P 3100 5200
+F 0 "#PWR?" H 3100 5050 50  0001 C CNN
+F 1 "VCC" H 3100 5350 50  0000 C CNN
+F 2 "" H 3100 5200 50  0001 C CNN
+F 3 "" H 3100 5200 50  0001 C CNN
+	1    3100 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 5200 3100 5300
+Connection ~ 3100 5300
+Wire Notes Line
+	2500 4950 2500 7000
+Wire Notes Line
+	2500 7000 3200 7000
+Wire Notes Line
+	3200 7000 3200 4950
+Wire Notes Line
+	3200 4950 2500 4950
+Text Notes 2500 4950 0    50   ~ 0
+Pullup Resistors
 $EndSCHEMATC
