@@ -345,8 +345,6 @@ F 3 "" H 4450 5400 50  0001 C CNN
 $EndComp
 Wire Notes Line
 	11150 5600 11150 4700
-Text GLabel 8850 950  0    60   Input ~ 0
-CANV
 $Comp
 L power:GND #PWR?
 U 1 1 5B624884
@@ -844,7 +842,7 @@ L Device:D_Zener D?
 U 1 1 5B9F11BD
 P 650 1000
 F 0 "D?" V 696 921 50  0000 R CNN
-F 1 "D_Zener" V 605 921 50  0000 R CNN
+F 1 "1N5819" V 800 950 50  0000 R CNN
 F 2 "" H 650 1000 50  0001 C CNN
 F 3 "~" H 650 1000 50  0001 C CNN
 	1    650  1000
@@ -1593,8 +1591,6 @@ Wire Wire Line
 Wire Wire Line
 	8850 1350 8900 1350
 Wire Wire Line
-	8850 950  8900 950 
-Wire Wire Line
 	1050 2650 1660 2650
 Wire Wire Line
 	1050 2750 1650 2750
@@ -2083,10 +2079,6 @@ F 3 "" H 9200 2100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 9200 2100
-Text GLabel 8550 1650 2    60   Input ~ 0
-CANV
-Wire Wire Line
-	8550 1650 8550 1800
 Wire Wire Line
 	8550 1800 8700 1800
 Connection ~ 8700 1800
@@ -2233,4 +2225,40 @@ F 3 "" H 650 1450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Connection ~ 650  1450
+$Comp
+L power:+24V #PWR?
+U 1 1 5BF26E7A
+P 900 1150
+F 0 "#PWR?" H 900 1000 50  0001 C CNN
+F 1 "+24V" H 900 1300 50  0000 C CNN
+F 2 "" H 900 1150 50  0001 C CNN
+F 3 "" H 900 1150 50  0001 C CNN
+	1    900  1150
+	1    0    0    -1  
+$EndComp
+Connection ~ 900  1150
+$Comp
+L power:+24V #PWR?
+U 1 1 5BF272B6
+P 8750 950
+F 0 "#PWR?" H 8750 800 50  0001 C CNN
+F 1 "+24V" H 8750 1100 50  0000 C CNN
+F 2 "" H 8750 950 50  0001 C CNN
+F 3 "" H 8750 950 50  0001 C CNN
+	1    8750 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 950  8900 950 
+$Comp
+L power:+24V #PWR?
+U 1 1 5BF89492
+P 8550 1800
+F 0 "#PWR?" H 8550 1650 50  0001 C CNN
+F 1 "+24V" H 8550 1950 50  0000 C CNN
+F 2 "" H 8550 1800 50  0001 C CNN
+F 3 "" H 8550 1800 50  0001 C CNN
+	1    8550 1800
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
