@@ -2,28 +2,28 @@
 A CAN bus controlled, WiFi enabled network of dome node LEDs with many features
 
 # Features
-:heavy_check_mark: ESP32 microcontroller (WiFi, bluetooth)
+* :heavy_check_mark: ESP32 microcontroller (WiFi, bluetooth)
   * Pads for both ESP32 standalone module and dev board variants
   * OTA wireless firmware updates
-:heavy_check_mark: SN65HVD230 CAN bus transceiver
-:heavy_check_mark: 2x RJ45 connectors for CAN in and passthrough
-:heavy_check_mark: 5x WS2812/NeoPixel for RGB lighting
-:heavy_check_mark: On-board buck regulator
-:heavy_check_mark: 2x push switches
-:heavy_check_mark: Power and GPIO LED
-:heavy_check_mark: many headers for sensors and attachments (I2C, GPIOs, power etc)
-:red_circle: A shield header for expansion boards (to be added)
+* :heavy_check_mark: SN65HVD230 CAN bus transceiver
+* :heavy_check_mark: 2x RJ45 connectors for CAN in and passthrough
+* :heavy_check_mark: 5x WS2812/NeoPixel for RGB lighting
+* :heavy_check_mark: On-board buck regulator
+* :heavy_check_mark: 2x push switches
+* :heavy_check_mark: Power and GPIO LED
+* :heavy_check_mark: many headers for sensors and attachments (I2C, GPIOs, power etc)
+* :red_circle: A shield header for expansion boards (to be added)
 
 
 # Sensors (all optional and do not need to be populated)
 Optional features by means of populating those pads are:
-:question: Outer and inner facing LDRs for ambient/transmitted light sensing
-:question: 2x tactile push switches for on-board input
-:question: Heavier duty power RGB LED shield connector (exposes 24V and R,G,B GPIOs)
-:question: IR Tx/Rx and (hopefully!) a ghetto distance sensor
-:question: Speaker
-:question: Capacitive touch
-:red_circle: Microphone (not yet implemented)
+* :question: Outer and inner facing LDRs for ambient/transmitted light sensing
+* :question: 2x tactile push switches for on-board input
+* :question: Heavier duty power RGB LED shield connector (exposes 24V and R,G,B GPIOs)
+* :question: IR Tx/Rx and (hopefully!) a ghetto distance sensor
+* :question: Speaker
+* :question: Capacitive touch
+* :red_circle: Microphone (not yet implemented)
 
 # Firmware notes
 * CAN bus - http://www.barth-dev.de/can-driver-esp32/
