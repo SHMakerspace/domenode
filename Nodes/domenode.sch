@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:domenode-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -1435,8 +1436,6 @@ Wire Wire Line
 	8300 1150 8200 1150
 Wire Notes Line
 	9650 1550 9650 550 
-Wire Notes Line
-	10300 1550 10300 550 
 Text Notes 6850 650  0    50   ~ 0
 SENSOR
 Text Notes 7850 650  0    50   ~ 0
@@ -2066,8 +2065,6 @@ Connection ~ 8700 1800
 Wire Notes Line
 	9450 2300 9450 1550
 Wire Notes Line
-	6550 2300 9450 2300
-Wire Notes Line
 	5600 550  11150 550 
 Wire Notes Line
 	5600 1550 11150 1550
@@ -2307,4 +2304,49 @@ F 3 "http://www.ti.com/lit/ds/symlink/sn65hvd230.pdf" H 8500 4350 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	8500 4450 8600 4450
+$Comp
+L Connector_Generic:Conn_01x04 J?
+U 1 1 5B61D446
+P 9850 1750
+F 0 "J?" V 9850 2000 50  0000 R CNN
+F 1 "GROVE/I2C" V 9950 1900 50  0000 R CNN
+F 2 "" H 9850 1750 50  0001 C CNN
+F 3 "~" H 9850 1750 50  0001 C CNN
+	1    9850 1750
+	0    -1   -1   0   
+$EndComp
+Text GLabel 9750 1950 3    50   Input ~ 0
+SCL
+Text GLabel 9850 1950 3    50   Input ~ 0
+SDA
+$Comp
+L power:GND #PWR?
+U 1 1 5B61E10A
+P 10100 1950
+F 0 "#PWR?" H 10100 1700 50  0001 C CNN
+F 1 "GND" H 10100 1800 50  0000 C CNN
+F 2 "" H 10100 1950 50  0001 C CNN
+F 3 "" H 10100 1950 50  0001 C CNN
+	1    10100 1950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10100 1950 10050 1950
+$Comp
+L power:VCC #PWR?
+U 1 1 5B636BBB
+P 9950 2050
+F 0 "#PWR?" H 9950 1900 50  0001 C CNN
+F 1 "VCC" H 9950 2200 50  0000 C CNN
+F 2 "" H 9950 2050 50  0001 C CNN
+F 3 "" H 9950 2050 50  0001 C CNN
+	1    9950 2050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9950 1950 9950 2050
+Wire Notes Line
+	10300 550  10300 2300
+Wire Notes Line
+	6550 2300 10300 2300
 $EndSCHEMATC
