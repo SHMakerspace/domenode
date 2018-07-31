@@ -23,7 +23,7 @@ Optional features by means of populating those pads are:
 * :question: IR Tx/Rx and (hopefully!) a ghetto distance sensor
 * :question: Speaker
 * :question: Capacitive touch
-* :red_circle: Microphone (not yet implemented)
+* :question: Microphone - MAX4466 based breakout board connector (footprints could be added to board, alternative idea is I2S)
 
 # Firmware notes
 * CAN bus - http://www.barth-dev.de/can-driver-esp32/
