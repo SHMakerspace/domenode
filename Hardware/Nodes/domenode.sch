@@ -800,8 +800,6 @@ Wire Notes Line
 	1600 6750 2400 6750
 Text Notes 1600 4700 0    50   ~ 0
 Onboard Switches
-Wire Notes Line
-	11150 550  11150 1550
 Text Notes 6550 550  0    50   ~ 0
 Connectors
 Wire Notes Line
@@ -2199,8 +2197,6 @@ Wire Wire Line
 	9950 2150 9950 2250
 Wire Notes Line
 	10300 550  10300 2450
-Wire Notes Line
-	6550 2450 10300 2450
 Text GLabel 750  6400 0    50   Input ~ 0
 VP
 $Comp
@@ -2500,4 +2496,56 @@ Text Notes 8850 1650 0    50   ~ 0
 CANV
 Text Notes 9850 1650 0    50   ~ 0
 I2C
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B6307AD
+P 10650 2050
+F 0 "MH?" V 10800 2100 50  0000 C CNN
+F 1 "TOUCH5" H 10750 2250 50  0000 C CNN
+F 2 "" H 10650 2050 50  0001 C CNN
+F 3 "~" H 10650 2050 50  0001 C CNN
+	1    10650 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B630B37
+P 10650 2200
+F 0 "MH?" V 10500 2250 50  0000 C CNN
+F 1 "TOUCH5" H 10550 2400 50  0000 C CNN
+F 2 "" H 10650 2200 50  0001 C CNN
+F 3 "~" H 10650 2200 50  0001 C CNN
+	1    10650 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B65161F
+P 10850 2200
+F 0 "MH?" V 11000 2250 50  0000 C CNN
+F 1 "TOUCH5" H 10950 2400 50  0000 C CNN
+F 2 "" H 10850 2200 50  0001 C CNN
+F 3 "~" H 10850 2200 50  0001 C CNN
+	1    10850 2200
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B651769
+P 10850 2050
+F 0 "MH?" V 10700 2100 50  0000 C CNN
+F 1 "TOUCH5" H 10750 2250 50  0000 C CNN
+F 2 "" H 10850 2050 50  0001 C CNN
+F 3 "~" H 10850 2050 50  0001 C CNN
+	1    10850 2050
+	0    1    1    0   
+$EndComp
+Text GLabel 10750 2050 1    50   Input ~ 0
+TOUCH5
+Wire Notes Line
+	11150 550  11150 2450
+Wire Notes Line
+	6550 2450 11150 2450
+Text Notes 10600 1650 0    50   ~ 0
+CAP_RING\n
 $EndSCHEMATC
