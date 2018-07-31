@@ -2349,4 +2349,102 @@ Wire Notes Line
 	10300 550  10300 2300
 Wire Notes Line
 	6550 2300 10300 2300
+Text GLabel 750  6650 0    50   Input ~ 0
+VP
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 5B688904
+P 850 6850
+F 0 "J?" V 850 6600 50  0000 L CNN
+F 1 "MIC_JUMPER" V 950 6500 50  0000 L CNN
+F 2 "" H 850 6850 50  0001 C CNN
+F 3 "~" H 850 6850 50  0001 C CNN
+	1    850  6850
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 J?
+U 1 1 5B688ED1
+P 1250 6400
+F 0 "J?" V 1216 6212 50  0000 R CNN
+F 1 "MIC_HEADER" V 1350 6600 50  0000 R CNN
+F 2 "" H 1250 6400 50  0001 C CNN
+F 3 "~" H 1250 6400 50  0001 C CNN
+	1    1250 6400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B6A26C3
+P 1250 6750
+F 0 "#PWR?" H 1250 6500 50  0001 C CNN
+F 1 "GND" H 1255 6577 50  0000 C CNN
+F 2 "" H 1250 6750 50  0001 C CNN
+F 3 "" H 1250 6750 50  0001 C CNN
+	1    1250 6750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR?
+U 1 1 5B6BB725
+P 1350 6600
+F 0 "#PWR?" H 1350 6450 50  0001 C CNN
+F 1 "VCC" H 1350 6750 50  0000 C CNN
+F 2 "" H 1350 6600 50  0001 C CNN
+F 3 "" H 1350 6600 50  0001 C CNN
+	1    1350 6600
+	0    1    1    0   
+$EndComp
+Wire Notes Line
+	1550 7000 500  7000
+Wire Notes Line
+	500  7000 500  6150
+Wire Notes Line
+	500  6150 1550 6150
+Wire Notes Line
+	1550 6150 1550 7000
+Text Notes 500  6150 0    50   ~ 0
+Microphone
+Text Notes 500  6250 0    50   ~ 0
+MAX4466 breakout
+Wire Wire Line
+	1250 6600 1250 6750
+$Comp
+L Device:R R?
+U 1 1 5B75451E
+P 1000 6600
+F 0 "R?" H 1070 6646 50  0000 L CNN
+F 1 "5K" V 1000 6550 50  0000 L CNN
+F 2 "" V 930 6600 50  0001 C CNN
+F 3 "~" H 1000 6600 50  0001 C CNN
+	1    1000 6600
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5B754A82
+P 850 6450
+F 0 "R?" H 700 6400 50  0000 L CNN
+F 1 "4K" V 850 6400 50  0000 L CNN
+F 2 "" V 780 6450 50  0001 C CNN
+F 3 "~" H 850 6450 50  0001 C CNN
+	1    850  6450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	850  6600 850  6650
+Connection ~ 850  6600
+$Comp
+L power:VCC #PWR?
+U 1 1 5B76DF34
+P 700 6300
+F 0 "#PWR?" H 700 6150 50  0001 C CNN
+F 1 "VCC" H 700 6450 50  0000 C CNN
+F 2 "" H 700 6300 50  0001 C CNN
+F 3 "" H 700 6300 50  0001 C CNN
+	1    700  6300
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	700  6300 850  6300
 $EndSCHEMATC
