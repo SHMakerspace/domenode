@@ -2548,4 +2548,75 @@ Wire Notes Line
 	6550 2450 11150 2450
 Text Notes 10600 1650 0    50   ~ 0
 CAP_RING\n
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B6CE13E
+P 5950 1900
+F 0 "MH?" V 6100 1950 50  0000 C CNN
+F 1 "GND" H 6000 2100 50  0000 C CNN
+F 2 "" H 5950 1900 50  0001 C CNN
+F 3 "~" H 5950 1900 50  0001 C CNN
+	1    5950 1900
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B6CE596
+P 6150 1900
+F 0 "MH?" V 6000 1950 50  0000 C CNN
+F 1 "GND" H 6050 2100 50  0000 C CNN
+F 2 "" H 6150 1900 50  0001 C CNN
+F 3 "~" H 6150 1900 50  0001 C CNN
+	1    6150 1900
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B6CE6FE
+P 6150 2050
+F 0 "MH?" V 6300 2100 50  0000 C CNN
+F 1 "GND" H 6200 2250 50  0000 C CNN
+F 2 "" H 6150 2050 50  0001 C CNN
+F 3 "~" H 6150 2050 50  0001 C CNN
+	1    6150 2050
+	0    1    1    0   
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad MH?
+U 1 1 5B6CEEC6
+P 5950 2050
+F 0 "MH?" V 5800 2100 50  0000 C CNN
+F 1 "GND" H 5900 2250 50  0000 C CNN
+F 2 "" H 5950 2050 50  0001 C CNN
+F 3 "~" H 5950 2050 50  0001 C CNN
+	1    5950 2050
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5B6D159C
+P 6050 2250
+F 0 "#PWR?" H 6050 2000 50  0001 C CNN
+F 1 "GND" H 6050 2100 50  0000 C CNN
+F 2 "" H 6050 2250 50  0001 C CNN
+F 3 "" H 6050 2250 50  0001 C CNN
+	1    6050 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6050 2250 6050 2050
+Connection ~ 6050 2050
+Wire Wire Line
+	6050 2050 6050 1900
+Connection ~ 6050 1900
+Wire Notes Line
+	6450 2450 6450 1700
+Wire Notes Line
+	6450 1700 5650 1700
+Wire Notes Line
+	5650 1700 5650 2450
+Wire Notes Line
+	5650 2450 6450 2450
+Text Notes 5800 1700 0    50   ~ 0
+SHIELD MOUNT
 $EndSCHEMATC
