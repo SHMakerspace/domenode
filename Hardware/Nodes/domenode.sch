@@ -1432,9 +1432,9 @@ Wire Wire Line
 Wire Wire Line
 	1050 3050 1620 3050
 Wire Wire Line
-	1050 3150 1610 3150
+	1100 3150 1610 3150
 Wire Wire Line
-	1050 3250 1600 3250
+	1100 3250 1600 3250
 Wire Wire Line
 	1050 3350 1590 3350
 Wire Wire Line
