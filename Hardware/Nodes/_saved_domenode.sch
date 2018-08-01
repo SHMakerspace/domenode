@@ -1553,7 +1553,7 @@ U 1 1 5B6E4176
 P 6950 1150
 F 0 "J6" H 7000 1467 50  0000 C CNN
 F 1 "SENSOR" H 7000 1376 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_2x06_Pitch2.54mm" H 6950 1150 50  0001 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_2x03_Pitch2.54mm" H 6950 1150 50  0001 C CNN
 F 3 "~" H 6950 1150 50  0001 C CNN
 	1    6950 1150
 	1    0    0    -1  
@@ -1564,7 +1564,7 @@ U 1 1 5B6E5285
 P 7900 1150
 F 0 "J8" H 7950 1467 50  0000 C CNN
 F 1 "TOUCH" H 7950 1376 50  0000 C CNN
-F 2 "Socket_Strips:Socket_Strip_Straight_2x06_Pitch2.54mm" H 7900 1150 50  0001 C CNN
+F 2 "Socket_Strips:Socket_Strip_Straight_2x03_Pitch2.54mm" H 7900 1150 50  0001 C CNN
 F 3 "~" H 7900 1150 50  0001 C CNN
 	1    7900 1150
 	1    0    0    -1  
