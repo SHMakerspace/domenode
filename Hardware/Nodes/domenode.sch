@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:domenode-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -290,9 +289,9 @@ Text GLabel 9850 4800 0    50   Input ~ 0
 CANL
 Text GLabel 9850 4700 0    50   Input ~ 0
 CANH
-Text GLabel 9100 4500 2    50   Input ~ 0
+Text GLabel 9100 4650 2    50   Input ~ 0
 CANL
-Text GLabel 9100 4200 2    50   Input ~ 0
+Text GLabel 9100 4050 2    50   Input ~ 0
 CANH
 Wire Wire Line
 	9850 3600 9900 3600
@@ -1714,12 +1713,12 @@ $EndComp
 $Comp
 L power:VCC #PWR0152
 U 1 1 5C0025F6
-P 8600 4000
-F 0 "#PWR0152" H 8600 3850 50  0001 C CNN
-F 1 "VCC" H 8600 4150 50  0000 C CNN
-F 2 "" H 8600 4000 50  0001 C CNN
-F 3 "" H 8600 4000 50  0001 C CNN
-	1    8600 4000
+P 8600 3600
+F 0 "#PWR0152" H 8600 3450 50  0001 C CNN
+F 1 "VCC" H 8600 3750 50  0000 C CNN
+F 2 "" H 8600 3600 50  0001 C CNN
+F 3 "" H 8600 3600 50  0001 C CNN
+	1    8600 3600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1741,28 +1740,14 @@ Connection ~ 8600 4800
 $Comp
 L Device:R R18
 U 1 1 5C10BB74
-P 9050 4350
-F 0 "R18" H 9120 4396 50  0000 L CNN
-F 1 "120" V 9050 4300 50  0000 L CNN
-F 2 "" V 8980 4350 50  0001 C CNN
-F 3 "~" H 9050 4350 50  0001 C CNN
-	1    9050 4350
+P 9100 4300
+F 0 "R18" V 9200 4250 50  0000 L CNN
+F 1 "120" V 9100 4250 50  0000 L CNN
+F 2 "" V 9030 4300 50  0001 C CNN
+F 3 "~" H 9100 4300 50  0001 C CNN
+	1    9100 4300
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	9000 4300 9000 4200
-Wire Wire Line
-	9000 4200 9050 4200
-Wire Wire Line
-	9000 4400 9000 4500
-Wire Wire Line
-	9000 4500 9050 4500
-Wire Wire Line
-	9100 4200 9050 4200
-Connection ~ 9050 4200
-Wire Wire Line
-	9100 4500 9050 4500
-Connection ~ 9050 4500
 Wire Wire Line
 	8750 4800 8600 4800
 Wire Wire Line
@@ -2431,4 +2416,56 @@ F 3 "" H 2850 1150 50  0001 C CNN
 	1    2850 1150
 	1    0    0    -1  
 $EndComp
+$Comp
+L Device:C C?
+U 1 1 5B63263E
+P 8200 3750
+F 0 "C?" H 8200 3850 50  0000 L CNN
+F 1 "100nF" V 8350 3700 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 8238 3600 50  0001 C CNN
+F 3 "~" H 8200 3750 50  0001 C CNN
+	1    8200 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8600 3600 8600 4000
+Wire Wire Line
+	8200 3600 8600 3600
+Connection ~ 8600 3600
+$Comp
+L power:GND #PWR?
+U 1 1 5B64E7F2
+P 8200 3900
+F 0 "#PWR?" H 8200 3650 50  0001 C CNN
+F 1 "GND" H 8200 3750 50  0000 C CNN
+F 2 "" H 8200 3900 50  0001 C CNN
+F 3 "" H 8200 3900 50  0001 C CNN
+	1    8200 3900
+	1    0    0    -1  
+$EndComp
+Text Notes 11400 4200 0    50   ~ 0
+If the board is the first\nand the last node of\nthe CAN network, then\nJ2 jumper should be\nplaced.\nIf the board is a node in the middle,\njumper should be removed.
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 5B660C92
+P 9300 4450
+F 0 "J?" H 9250 4550 50  0000 L CNN
+F 1 "CANTERM" V 9400 4300 50  0000 L CNN
+F 2 "" H 9300 4450 50  0001 C CNN
+F 3 "~" H 9300 4450 50  0001 C CNN
+	1    9300 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 4650 9100 4650
+Wire Wire Line
+	9000 4400 9000 4650
+Wire Wire Line
+	9100 4550 9100 4650
+Wire Wire Line
+	9000 4050 9100 4050
+Wire Wire Line
+	9000 4050 9000 4300
+Wire Wire Line
+	9100 4150 9100 4050
 $EndSCHEMATC
