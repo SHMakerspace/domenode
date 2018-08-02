@@ -206,9 +206,9 @@ Text GLabel 9850 1150 0    50   Input ~ 0
 RX
 Wire Wire Line
 	9900 1150 9850 1150
-Text GLabel 1400 3200 0    50   Input ~ 0
+Text GLabel 3250 2450 2    50   Input ~ 0
 SW1
-Text GLabel 1400 3300 0    50   Input ~ 0
+Text GLabel 3250 2850 2    50   Input ~ 0
 SW2
 Text GLabel 1400 3000 0    50   Input ~ 0
 SW3
@@ -356,7 +356,7 @@ Wire Wire Line
 Connection ~ 800  5250
 Wire Wire Line
 	800  5250 800  5300
-Text GLabel 1400 3800 0    50   Input ~ 0
+Text GLabel 1400 3600 0    50   Input ~ 0
 RLDR
 $Comp
 L Device:LED D11
@@ -644,10 +644,10 @@ F 3 "" H 1300 2400 50  0001 C CNN
 	1    1300 2400
 	1    0    0    -1  
 $EndComp
-Text GLabel 2800 4250 3    50   Input ~ 0
-IO2
-Text GLabel 6200 750  1    50   Input ~ 0
-IO2
+Text GLabel 3250 2550 2    50   Input ~ 0
+BLINK
+Text GLabel 6200 650  2    50   Input ~ 0
+BLINK
 $Comp
 L Device:LED D12
 U 1 1 5C0BE84F
@@ -2466,4 +2466,20 @@ Connection ~ 9200 2150
 Wire Wire Line
 	9200 1950 9200 2050
 Connection ~ 9200 2050
+NoConn ~ 1400 3800
+NoConn ~ 3250 2950
+Text Notes 800  3150 0    50   ~ 0
+34/35\ninput only
+Text Notes 750  3900 0    50   ~ 0
+IO12 strapping\npin
+Wire Wire Line
+	6200 650  6200 750 
+NoConn ~ 2800 4250
+Wire Wire Line
+	3250 3750 3250 3850
+Connection ~ 3250 3850
+Text Notes 2800 4400 0    50   ~ 0
+IO2 strapping pin\n
+Text Notes 750  3350 0    50   ~ 0
+32/33\noutput only
 $EndSCHEMATC
