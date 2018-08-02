@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:domenode-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -1402,33 +1403,6 @@ Connection ~ 3350 5150
 Wire Wire Line
 	3350 5150 3350 5250
 $Comp
-L Connector_Generic:Conn_02x04_Odd_Even J12
-U 1 1 5BB2C1A0
-P 7900 2050
-F 0 "J12" H 7950 2367 50  0000 C CNN
-F 1 "5V" H 7950 2276 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 7900 2050 50  0001 C CNN
-F 3 "~" H 7900 2050 50  0001 C CNN
-	1    7900 2050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7700 2250 7700 2150
-Wire Wire Line
-	7700 2150 7700 2050
-Connection ~ 7700 2150
-Wire Wire Line
-	7700 1950 7700 2050
-Connection ~ 7700 2050
-Wire Wire Line
-	8200 1950 8200 2050
-Wire Wire Line
-	8200 2150 8200 2050
-Connection ~ 8200 2050
-Wire Wire Line
-	8200 2250 8200 2150
-Connection ~ 8200 2150
-$Comp
 L power:GND #PWR0140
 U 1 1 5BBA985F
 P 8200 2250
@@ -1439,34 +1413,6 @@ F 3 "" H 8200 2250 50  0001 C CNN
 	1    8200 2250
 	1    0    0    -1  
 $EndComp
-Connection ~ 8200 2250
-$Comp
-L Connector_Generic:Conn_02x04_Odd_Even J10
-U 1 1 5BBE9282
-P 6950 2050
-F 0 "J10" H 7000 2367 50  0000 C CNN
-F 1 "3V3" H 7000 2276 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 6950 2050 50  0001 C CNN
-F 3 "~" H 6950 2050 50  0001 C CNN
-	1    6950 2050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6750 2250 6750 2150
-Wire Wire Line
-	6750 2150 6750 2050
-Connection ~ 6750 2150
-Wire Wire Line
-	6750 1950 6750 2050
-Connection ~ 6750 2050
-Wire Wire Line
-	7250 1950 7250 2050
-Wire Wire Line
-	7250 2150 7250 2050
-Connection ~ 7250 2050
-Wire Wire Line
-	7250 2250 7250 2150
-Connection ~ 7250 2150
 $Comp
 L power:VCC #PWR0141
 U 1 1 5BBE9293
@@ -1478,7 +1424,6 @@ F 3 "" H 6750 1950 50  0001 C CNN
 	1    6750 1950
 	1    0    0    -1  
 $EndComp
-Connection ~ 6750 1950
 $Comp
 L power:GND #PWR0142
 U 1 1 5BBE929A
@@ -1490,7 +1435,6 @@ F 3 "" H 7250 2250 50  0001 C CNN
 	1    7250 2250
 	1    0    0    -1  
 $EndComp
-Connection ~ 7250 2250
 $Comp
 L power:+5V #PWR0143
 U 1 1 5BBFF313
@@ -1502,38 +1446,10 @@ F 3 "" H 7700 1950 50  0001 C CNN
 	1    7700 1950
 	1    0    0    -1  
 $EndComp
-Connection ~ 7700 1950
 Wire Notes Line
 	7450 550  7450 2450
 Wire Notes Line
 	8450 550  8450 2450
-$Comp
-L Connector_Generic:Conn_02x04_Odd_Even J14
-U 1 1 5BC42D2E
-P 8900 2050
-F 0 "J14" H 8950 2367 50  0000 C CNN
-F 1 "CANV" H 8950 2276 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 8900 2050 50  0001 C CNN
-F 3 "~" H 8900 2050 50  0001 C CNN
-	1    8900 2050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8700 2250 8700 2150
-Wire Wire Line
-	8700 2150 8700 2050
-Connection ~ 8700 2150
-Wire Wire Line
-	8700 1950 8700 2050
-Connection ~ 8700 2050
-Wire Wire Line
-	9200 1950 9200 2050
-Wire Wire Line
-	9200 2150 9200 2050
-Connection ~ 9200 2050
-Wire Wire Line
-	9200 2250 9200 2150
-Connection ~ 9200 2150
 $Comp
 L power:GND #PWR0144
 U 1 1 5BC42D46
@@ -1545,10 +1461,8 @@ F 3 "" H 9200 2250 50  0001 C CNN
 	1    9200 2250
 	1    0    0    -1  
 $EndComp
-Connection ~ 9200 2250
 Wire Wire Line
 	8550 1950 8700 1950
-Connection ~ 8700 1950
 Wire Notes Line
 	9450 2450 9450 1550
 Wire Notes Line
@@ -2080,8 +1994,8 @@ Text Notes 6950 1650 0    50   ~ 0
 3V3
 Text Notes 7900 1650 0    50   ~ 0
 5V
-Text Notes 8850 1650 0    50   ~ 0
-CANV
+Text Notes 8900 1650 0    50   ~ 0
+24V
 Text Notes 9850 1650 0    50   ~ 0
 I2C
 $Comp
@@ -2468,4 +2382,88 @@ Wire Wire Line
 	9000 4050 9000 4300
 Wire Wire Line
 	9100 4150 9100 4050
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J?
+U 1 1 5B64C132
+P 7900 2050
+F 0 "J?" H 7950 2367 50  0000 C CNN
+F 1 "5V" H 7950 2276 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 7900 2050 50  0001 C CNN
+F 3 "~" H 7900 2050 50  0001 C CNN
+	1    7900 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7700 2150 7700 2250
+Wire Wire Line
+	8200 2150 8200 2250
+Wire Wire Line
+	8200 2150 8200 2050
+Connection ~ 8200 2150
+Wire Wire Line
+	8200 1950 8200 2050
+Connection ~ 8200 2050
+Wire Wire Line
+	7700 2050 7700 1950
+Connection ~ 7700 1950
+Wire Wire Line
+	7700 2150 7700 2050
+Connection ~ 7700 2150
+Connection ~ 7700 2050
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J?
+U 1 1 5B682405
+P 6950 2050
+F 0 "J?" H 7000 2367 50  0000 C CNN
+F 1 "3V3" H 7000 2276 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 6950 2050 50  0001 C CNN
+F 3 "~" H 6950 2050 50  0001 C CNN
+	1    6950 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 2150 6750 2250
+Wire Wire Line
+	7250 2150 7250 2250
+Wire Wire Line
+	6750 1950 6750 2050
+Connection ~ 6750 1950
+Wire Wire Line
+	6750 2050 6750 2150
+Connection ~ 6750 2050
+Connection ~ 6750 2150
+Wire Wire Line
+	7250 1950 7250 2050
+Wire Wire Line
+	7250 2150 7250 2050
+Connection ~ 7250 2150
+Connection ~ 7250 2050
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J?
+U 1 1 5B6B932A
+P 8900 2050
+F 0 "J?" H 8950 2367 50  0000 C CNN
+F 1 "24V" H 8950 2276 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 8900 2050 50  0001 C CNN
+F 3 "~" H 8900 2050 50  0001 C CNN
+	1    8900 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 2150 8700 2250
+Wire Wire Line
+	9200 2150 9200 2250
+Wire Wire Line
+	8700 1950 8700 2050
+Connection ~ 8700 1950
+Wire Wire Line
+	8700 2050 8700 2150
+Connection ~ 8700 2050
+Connection ~ 8700 2150
+Wire Wire Line
+	9200 2150 9200 2050
+Connection ~ 9200 2150
+Wire Wire Line
+	9200 1950 9200 2050
+Connection ~ 9200 2050
 $EndSCHEMATC
