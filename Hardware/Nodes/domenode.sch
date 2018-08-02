@@ -425,7 +425,7 @@ U 1 1 5B9F11BD
 P 650 1000
 F 0 "D10" V 696 921 50  0000 R CNN
 F 1 "1N5819" V 800 950 50  0000 R CNN
-F 2 "Diode_SMD:D_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 650 1000 50  0001 C CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P7.62mm_Horizontal" H 650 1000 50  0001 C CNN
 F 3 "~" H 650 1000 50  0001 C CNN
 	1    650  1000
 	0    -1   -1   0   
@@ -469,8 +469,6 @@ F 3 "" H 5750 1350 50  0001 C CNN
 	1    5750 1350
 	1    0    0    -1  
 $EndComp
-Text GLabel 3550 1200 3    60   Input ~ 0
-CANV
 $Comp
 L power:+5V #PWR0119
 U 1 1 5BA7FF3F
@@ -504,8 +502,6 @@ F 3 "" H 3200 1200 50  0001 C CNN
 	1    3200 1200
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3550 1150 3550 1200
 Wire Wire Line
 	3350 1150 3350 1200
 Wire Wire Line
@@ -1065,7 +1061,7 @@ U 1 1 5C9AB06B
 P 3950 5800
 F 0 "LS1" H 4120 5796 50  0000 L CNN
 F 1 "Speaker" H 4120 5705 50  0000 L CNN
-F 2 "" H 3950 5600 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3950 5600 50  0001 C CNN
 F 3 "~" H 3940 5750 50  0001 C CNN
 	1    3950 5800
 	1    0    0    -1  
@@ -1170,12 +1166,12 @@ F 3 "~" H 2100 6550 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x04 J6
+L Connector_Generic:Conn_01x03 J6
 U 1 1 5B6A6A69
 P 3350 950
 F 0 "J6" V 3350 1200 50  0000 R CNN
 F 1 "POWER_TEST" V 3450 1100 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 3350 950 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 3350 950 50  0001 C CNN
 F 3 "~" H 3350 950 50  0001 C CNN
 	1    3350 950 
 	0    -1   -1   0   
@@ -1276,7 +1272,7 @@ U 1 1 5B73623E
 P 10300 3300
 F 0 "J19" H 9971 3248 50  0000 R CNN
 F 1 "CAN_IN" V 9950 3600 50  0000 R CNN
-F 2 "Connector_RJ:RJ45_Amphenol_RJHSE5380" V 10300 3325 50  0001 C CNN
+F 2 "RJ45:RJ45_GENERIC" V 10300 3325 50  0001 C CNN
 F 3 "~" V 10300 3325 50  0001 C CNN
 	1    10300 3300
 	-1   0    0    1   
@@ -1310,7 +1306,7 @@ U 1 1 5B7BEF83
 P 10300 4400
 F 0 "J20" H 9971 4348 50  0000 R CNN
 F 1 "CAN_OUT" V 9950 4750 50  0000 R CNN
-F 2 "Connector_RJ:RJ45_Amphenol_RJHSE5380" V 10300 4425 50  0001 C CNN
+F 2 "RJ45:RJ45_GENERIC" V 10300 4425 50  0001 C CNN
 F 3 "~" V 10300 4425 50  0001 C CNN
 	1    10300 4400
 	-1   0    0    1   
@@ -1348,39 +1344,6 @@ Wire Wire Line
 Connection ~ 7950 1350
 Wire Wire Line
 	7950 1350 8200 1350
-$Comp
-L Connector_Generic:Conn_01x02 J7
-U 1 1 5BAD9414
-P 4200 4850
-F 0 "J7" V 4200 4600 50  0000 L CNN
-F 1 "SPEAKER" V 4300 4700 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 4200 4850 50  0001 C CNN
-F 3 "~" H 4200 4850 50  0001 C CNN
-	1    4200 4850
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:GND #PWR0139
-U 1 1 5BB02111
-P 4300 5050
-F 0 "#PWR0139" H 4300 4800 50  0001 C CNN
-F 1 "GND" H 4305 4877 50  0000 C CNN
-F 2 "" H 4300 5050 50  0001 C CNN
-F 3 "" H 4300 5050 50  0001 C CNN
-	1    4300 5050
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3350 5100 3350 5150
-Wire Wire Line
-	4200 5050 3450 5050
-Wire Wire Line
-	3450 5050 3450 5150
-Wire Wire Line
-	3450 5150 3350 5150
-Connection ~ 3350 5150
-Wire Wire Line
-	3350 5150 3350 5250
 $Comp
 L power:GND #PWR0140
 U 1 1 5BBA985F
@@ -2476,4 +2439,6 @@ Wire Wire Line
 	9950 850  9950 950 
 Wire Wire Line
 	9950 1250 9950 1300
+Wire Wire Line
+	3350 5100 3350 5250
 $EndSCHEMATC
