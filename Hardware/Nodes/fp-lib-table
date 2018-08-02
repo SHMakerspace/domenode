@@ -1,4 +1,5 @@
 (fp_lib_table
   (lib (name mini360)(type KiCad)(uri ${KIPRJMOD}/kicad_libraries/mini360.pretty)(options "")(descr ""))
   (lib (name ESP32-footprints-Lib)(type KiCad)(uri ${KIPRJMOD}/kicad_libraries/ESP32-kiCAD-Footprints-master/ESP32-Footprints/ESP32-footprints-Lib.pretty)(options "")(descr ""))
+  (lib (name shm_logo)(type KiCad)(uri ${KIPRJMOD}/kicad_libraries/shm_logo.kicad_mod)(options "")(descr ""))
 )
