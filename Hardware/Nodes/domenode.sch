@@ -2383,10 +2383,10 @@ Wire Wire Line
 Wire Wire Line
 	9100 4150 9100 4050
 $Comp
-L Connector_Generic:Conn_02x03_Odd_Even J?
+L Connector_Generic:Conn_02x03_Odd_Even J10
 U 1 1 5B64C132
 P 7900 2050
-F 0 "J?" H 7950 2367 50  0000 C CNN
+F 0 "J10" H 7950 2367 50  0000 C CNN
 F 1 "5V" H 7950 2276 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 7900 2050 50  0001 C CNN
 F 3 "~" H 7900 2050 50  0001 C CNN
@@ -2411,10 +2411,10 @@ Wire Wire Line
 Connection ~ 7700 2150
 Connection ~ 7700 2050
 $Comp
-L Connector_Generic:Conn_02x03_Odd_Even J?
+L Connector_Generic:Conn_02x03_Odd_Even J5
 U 1 1 5B682405
 P 6950 2050
-F 0 "J?" H 7000 2367 50  0000 C CNN
+F 0 "J5" H 7000 2367 50  0000 C CNN
 F 1 "3V3" H 7000 2276 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 6950 2050 50  0001 C CNN
 F 3 "~" H 6950 2050 50  0001 C CNN
@@ -2439,10 +2439,10 @@ Wire Wire Line
 Connection ~ 7250 2150
 Connection ~ 7250 2050
 $Comp
-L Connector_Generic:Conn_02x03_Odd_Even J?
+L Connector_Generic:Conn_02x03_Odd_Even J12
 U 1 1 5B6B932A
 P 8900 2050
-F 0 "J?" H 8950 2367 50  0000 C CNN
+F 0 "J12" H 8950 2367 50  0000 C CNN
 F 1 "24V" H 8950 2276 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 8900 2050 50  0001 C CNN
 F 3 "~" H 8900 2050 50  0001 C CNN
