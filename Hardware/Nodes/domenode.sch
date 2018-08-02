@@ -202,9 +202,9 @@ Text GLabel 3250 2450 2    50   Input ~ 0
 SW1
 Text GLabel 3250 2850 2    50   Input ~ 0
 SW2
-Text GLabel 1400 3000 0    50   Input ~ 0
+Text GLabel 2000 4250 3    50   Input ~ 0
 SW3
-Text GLabel 1400 3100 0    50   Input ~ 0
+Text GLabel 1400 3600 0    50   Input ~ 0
 SW4
 $Comp
 L power:GND #PWR0110
@@ -310,7 +310,7 @@ Text GLabel 750  5250 0    50   Input ~ 0
 FLDR
 Wire Wire Line
 	800  5200 800  5250
-Text GLabel 2000 4250 3    50   Input ~ 0
+Text GLabel 1400 3000 0    50   Input ~ 0
 FLDR
 Wire Wire Line
 	1200 5200 1200 5250
@@ -348,7 +348,7 @@ Wire Wire Line
 Connection ~ 800  5250
 Wire Wire Line
 	800  5250 800  5300
-Text GLabel 1400 3600 0    50   Input ~ 0
+Text GLabel 1400 3100 0    50   Input ~ 0
 RLDR
 $Comp
 L Device:LED D11
@@ -2406,7 +2406,7 @@ Wire Wire Line
 Connection ~ 9200 2050
 NoConn ~ 1400 3800
 NoConn ~ 3250 2950
-Text Notes 800  3150 0    50   ~ 0
+Text Notes 750  3100 0    50   ~ 0
 34/35\ninput only
 Text Notes 750  3900 0    50   ~ 0
 IO12 strapping\npin
