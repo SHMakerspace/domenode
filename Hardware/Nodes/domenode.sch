@@ -1030,8 +1030,6 @@ F 3 "~" H 6150 5600 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 Wire Wire Line
-	6300 5500 6300 5600
-Wire Wire Line
 	6000 5550 6000 5600
 $Comp
 L Device:R R11
@@ -2441,4 +2439,6 @@ Wire Wire Line
 	9950 1250 9950 1300
 Wire Wire Line
 	3350 5100 3350 5250
+Wire Wire Line
+	6300 5600 6300 6100
 $EndSCHEMATC
