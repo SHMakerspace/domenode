@@ -403,8 +403,8 @@ U 1 1 5B9B92B7
 P 650 1300
 F 0 "C1" H 700 1400 50  0000 L CNN
 F 1 "10uF" H 650 1200 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0603_1608Metric_Pad1.05x0.95mm_HandSolder" H 688 1150 50  0001 C CNN
-F 3 "~" H 650 1300 50  0001 C CNN
+F 2 "Capacitor_SMD:C_1210_3225Metric_Pad1.42x2.65mm_HandSolder" H 688 1150 50  0001 C CNN
+F 3 "http://cpc.farnell.com/multicomp/mcca000585/mlcc-1210-y5v-25v-10uf/dp/CA06791?st=10uF%20capacitor" H 650 1300 50  0001 C CNN
 	1    650  1300
 	1    0    0    -1  
 $EndComp
@@ -2477,4 +2477,5 @@ Connection ~ 1300 2100
 Wire Wire Line
 	1050 2400 1300 2400
 Connection ~ 1300 2400
+NoConn ~ 8200 4400
 $EndSCHEMATC
