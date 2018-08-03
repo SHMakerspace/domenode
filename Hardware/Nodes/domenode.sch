@@ -1210,18 +1210,6 @@ $EndComp
 Connection ~ 8900 950 
 Wire Wire Line
 	8900 950  9300 950 
-Connection ~ 8900 1050
-Wire Wire Line
-	8900 1050 9300 1050
-Connection ~ 8900 1150
-Wire Wire Line
-	8900 1150 9300 1150
-Connection ~ 8900 1250
-Wire Wire Line
-	8900 1250 9300 1250
-Connection ~ 8900 1350
-Wire Wire Line
-	8900 1350 9300 1350
 $Comp
 L Connector_Generic:Conn_01x05 J16
 U 1 1 5B6F8D25
@@ -2478,4 +2466,24 @@ Wire Wire Line
 	1050 2400 1300 2400
 Connection ~ 1300 2400
 NoConn ~ 8200 4400
+$Comp
+L power:GND #PWR?
+U 1 1 5B65B220
+P 9300 1350
+F 0 "#PWR?" H 9300 1100 50  0001 C CNN
+F 1 "GND" H 9300 1200 50  0000 C CNN
+F 2 "" H 9300 1350 50  0001 C CNN
+F 3 "" H 9300 1350 50  0001 C CNN
+	1    9300 1350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9300 1050 9300 1150
+Wire Wire Line
+	9300 1250 9300 1150
+Connection ~ 9300 1150
+Wire Wire Line
+	9300 1250 9300 1350
+Connection ~ 9300 1250
+Connection ~ 9300 1350
 $EndSCHEMATC
