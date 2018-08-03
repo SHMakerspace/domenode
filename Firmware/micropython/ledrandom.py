@@ -1,4 +1,5 @@
 import machine, neopixel, random, time
+import math
 np = neopixel.NeoPixel(machine.Pin(16), 7, timing=True)
 
 def blinky(np):
@@ -21,3 +22,17 @@ def clear(np):
 	for i in range(n):
 		np[i] = (0, 0, 0)
 		np.write()
+		
+		
+def larson(np):
+	n = np.n
+	REDS = [0, 0, 0, 0, 0, 16, 64, 255, 64, 16, 0, 0, 0, 0, 0, 0]
+	start_time = time.time()
+	while True:
+		delta = (time.time() - start_time) * 16
+		offset = int(abs((delta % len(REDS)) - n))
+	
+		for i in range(n):
+			np[i] = (REDS[offset + i], 0, 0)
+	np.write()
+	time.sleep_ms(100)
