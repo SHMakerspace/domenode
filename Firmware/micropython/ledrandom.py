@@ -36,3 +36,18 @@ def larson(np):
 			np[i] = (REDS[offset + i], 0, 0)
 	np.write()
 	time.sleep_ms(100)
+	
+	
+def big(np):
+	n=np.n
+	for i in range(n):
+		r = random.randint(0, 255)
+		g = random.randint(0, 255)
+		b = random.randint(0, 255)
+		
+		np[i] = (r, g, b)
+	np.write()
+	time.sleep_ms(random.randint(100,200))
+	
+	
+	
