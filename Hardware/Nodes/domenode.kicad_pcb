@@ -3,7 +3,7 @@
   (general
     (thickness 1.6)
     (drawings 59)
-    (tracks 946)
+    (tracks 951)
     (zones 0)
     (modules 89)
     (nets 64)
@@ -31453,7 +31453,6 @@
   (segment (start 166.54 118.151085) (end 169.740226 114.950859) (width 0.25) (layer F.Cu) (net 4) (status 20))
   (segment (start 166.54 122.25) (end 166.54 118.151085) (width 0.25) (layer F.Cu) (net 4) (status 10))
   (segment (start 162.55 109.05) (end 163 109.5) (width 0.25) (layer F.Cu) (net 4) (status 20))
-  (segment (start 160.2 113.21) (end 160.2 116.25) (width 0.25) (layer B.Cu) (net 4) (status 20))
   (segment (start 153 113.88137) (end 154.05363 114.935) (width 0.25) (layer B.Cu) (net 4))
   (segment (start 153 112.75) (end 153 113.88137) (width 0.25) (layer B.Cu) (net 4) (status 10))
   (via (at 154.94 114.935) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 4))
@@ -31612,6 +31611,12 @@
   (segment (start 148.240675 111.174989) (end 151.424989 111.174989) (width 0.25) (layer B.Cu) (net 4))
   (segment (start 147.965685 110.899999) (end 148.240675 111.174989) (width 0.25) (layer B.Cu) (net 4))
   (segment (start 147.4 110.899999) (end 147.965685 110.899999) (width 0.25) (layer B.Cu) (net 4))
+  (via (at 135.3 114.7) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 4))
+  (segment (start 155 103) (end 155 103.575) (width 0.25) (layer F.Cu) (net 4))
+  (via (at 155 104.5) (size 0.8) (drill 0.4) (layers F.Cu B.Cu) (net 4))
+  (segment (start 155 103.575) (end 155 104.5) (width 0.25) (layer F.Cu) (net 4))
+  (segment (start 157.2 104.5) (end 160.1 107.4) (width 0.25) (layer B.Cu) (net 4))
+  (segment (start 155 104.5) (end 157.2 104.5) (width 0.25) (layer B.Cu) (net 4))
   (segment (start 113.5 90.1) (end 113.5 85.2) (width 0.4) (layer F.Cu) (net 5) (status 20))
   (segment (start 112.19 88.79) (end 106.25 88.79) (width 0.4) (layer F.Cu) (net 5) (status 20))
   (segment (start 113.5 90.1) (end 112.19 88.79) (width 0.4) (layer F.Cu) (net 5))
@@ -33907,6 +33912,12 @@
         (xy 126.480145 115.844251) (xy 126.65775 116.021856) (xy 126.179605 116.5) (xy 126.193748 116.514143) (xy 126.014143 116.693748)
         (xy 126 116.679605) (xy 125.519356 117.16025) (xy 125.341751 116.982645) (xy 125.340401 116.979994) (xy 125.820395 116.5)
         (xy 125.343351 116.022956) (xy 125.522055 115.844251) (xy 125.523248 115.843643) (xy 126 116.320395) (xy 126.477494 115.842901)
+      )
+    )
+    (filled_polygon
+      (pts
+        (xy 142.565 112.464561) (xy 142.565 113.035439) (xy 142.783466 113.562862) (xy 143.187138 113.966534) (xy 143.258001 113.995886)
+        (xy 143.258 114.948628) (xy 133.843176 114.948628) (xy 136.406805 112.384999) (xy 142.597956 112.384999)
       )
     )
     (filled_polygon
