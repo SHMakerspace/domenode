@@ -2379,8 +2379,6 @@ F 3 "~" H 6200 6250 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	9950 850  9950 900 
-Wire Wire Line
 	9950 1250 9950 1300
 Wire Wire Line
 	3350 5100 3350 5250
@@ -2443,7 +2441,6 @@ F 3 "" H 9950 900 50  0001 C CNN
 	1    9950 900 
 	1    0    0    -1  
 $EndComp
-Connection ~ 9950 900 
 Wire Wire Line
 	9950 900  9950 950 
 $Comp
