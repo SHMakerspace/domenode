@@ -1,3 +1,4 @@
 (sym_lib_table
-  (lib (name mini-360)(type Legacy)(uri G:/08_Personal/domenode/Nodes/kicad_libraries/mini-360.lib)(options "")(descr ""))
+  (lib (name stacked_usb)(type Legacy)(uri D:/P_Projects/domenode/Hardware/DistBoard/stacked_usb.lib)(options "")(descr ""))
+  (lib (name mini-360)(type Legacy)(uri D:/P_Projects/domenode/Hardware/Nodes/kicad_libraries/mini-360.lib)(options "")(descr ""))
 )

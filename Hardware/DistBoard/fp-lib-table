@@ -1,3 +1,4 @@
 (fp_lib_table
-  (lib (name mini360)(type KiCad)(uri G:/08_Personal/domenode/Nodes/kicad_libraries/mini360.pretty)(options "")(descr ""))
+  (lib (name RJ45)(type KiCad)(uri D:/P_Projects/domenode/Hardware/Nodes/kicad_libraries/RJ45.pretty)(options "")(descr ""))
+  (lib (name mini360)(type KiCad)(uri D:/P_Projects/domenode/Hardware/Nodes/kicad_libraries/mini360.pretty)(options "")(descr ""))
 )
