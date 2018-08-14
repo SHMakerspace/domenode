@@ -32,3 +32,36 @@ Optional features by means of populating those pads are:
 * Speaker - http://www.xtronical.com/basics/audio/dacs-on-esp32/
 * IR sensor - https://github.com/mdhiggins/ESP8266-HTTP-IR-Blaster
 * I2C bus - https://randomnerdtutorials.com/esp32-with-bmp180-barometric-sensor/
+
+
+# BoM and Components
+
+## 1. Basic functionality and programming
+* 1x ESP32 module
+* 1x SOT-223 3v3 LDO regulator
+* 2x 0603 10uF ceramic capacitors (decoupling)
+* 2x 100uF tantalum capacitors (decoupling)
+* 1x 4 pin ISP header
+* 1x 2 pin SW0 flashing header
+* 2x 0805 LED (power and blink)
+* 2x 0603 resistors for LEDs (470 and 1k)
+
+## 2. NeoPixels
+* 9x WS2812 LEDs
+* 1x 0603 470 ohm resistor (R13)
+* 9x 0603 100nF ceramic capacitors
+
+## 3. External Power
+* 1x MINI-360 buck regulator module (U1)
+* 1x 1N5819 protection diode
+* 1x 1210 10uF >24v capacitor (C1)
+* 2x 0603 10uF ceramic capacitors (C2, C4 decoupling)
+* 2x RJ45 connectors
+
+## 4. CAN Bus
+* 1x SN65HVD230DR transceiver IC (U6)
+* 1x 2 pin CANTERM header
+* 1x 0603 120 ohm resistor (R16)
+* 1x 0603 10k resistor (R17)
+* 1x 0603 100nF capacitor (C14, decoupling)
+
