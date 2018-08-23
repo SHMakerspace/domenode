@@ -11,15 +11,19 @@
 #include <WiFi.h>
 #include <WiFiUdp.h>
 #include <ESPmDNS.h>
+#include <NeoPixelBus.h>
+
+// Debug variables
+bool node_debug = true; // Enable this to prevent the ESP from restarting on an error to aid debugging
 
 // Set variables
-int nodeid;
+int node_id;
 const char* wifi_ssid     = "emfcamp-insecure18";
 const char* wifi_password = "";
 String mdns_hostname = "";
 String ota_server = "http://firmware.shmakerspace.org";
 int ota_port = 80;
-String ota_location = "/esp/update/arduino.php";
+String ota_location = "/domenode/update/ota.php";
 String ota_fwversion = "v0.1";
 
 // Set EEPROM location in filesystem
@@ -27,15 +31,21 @@ EEPROMClass  NODEDATA("eeprom", 0x1000);
 
 void node_restart() {
   // Snippet to restart gracefully
-  Serial.println("[node] Restarting!");
-  delay(5000);
-  ESP.restart();
+  if (node_debug) {
+    Serial.println("[node] Debug mode enabled, ESP will not restart!");
+    while (true);
+  }
+  else {
+    Serial.println("[node] Restarting in 5 seconds...");
+    delay(5000);
+    ESP.restart();
+  }
 }
 
 int eeprom_start() {
   // Start EEPROM and attempt to initialise
   if (NODEDATA.begin(NODEDATA.length())) {
-    Serial.println("[eeprom] NODEDATA succesfully initialised!");
+    Serial.println("[eeprom] NODEDATA successfully initialised!");
     return 1;
   }
   else {
@@ -46,19 +56,27 @@ int eeprom_start() {
 
 int eeprom_checkid() {
   // Check EEPROM for a node ID
-  NODEDATA.get(0, nodeid);
-  if (nodeid == -1) {
+  NODEDATA.get(0, node_id);
+  if (node_id == -1) {
+    Serial.println("[eeprom] Failed finding node ID in NODEDATA!");
     return 0;
   }
   else {
+    Serial.println("[eeprom] Found node ID in NODEDATA!");
     return 1;
   }
 }
 
-int eeprom_setid() {
+/* int eeprom_setid() {
   // Set a node ID in the EEPROM if one doesn't exist
-
-}
+  Serial.println("[node] Please enter the 2 digit node ID written on PCB:");
+  while (Serial.available()) {
+    // TODO: Accept an input via serial
+  }
+  //TODO: Write serial value to EEPROM
+  node_restart();
+  }
+*/
 
 int can_start() {
   // Start the CAN peripheral at 500 kbps
@@ -114,35 +132,41 @@ int mdns_start(const char* hostname) {
   }
 */
 
+int pixels_start(int count, int pin){
+  // Initilise pixels
+  NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> pixels(count, pin);
+  Serial.println("[pixels] Successfully initialised pixels!");
+  return 1;
+}
+
 void setup() {
   // Start serial communication for debug
   Serial.begin(115200);
   Serial.println("[node] Booting...");
+  if (node_debug) {
+    Serial.println("[node] DEBUG MODE ENABLED!");
+  }
 
-  // Start EEPROM
+  // Start EEPROM and check if ID has been written
   if (!eeprom_start()) {
     node_restart();
   }
-
   if (eeprom_checkid()) {
-    Serial.println("[eeprom] Found node ID in EEPROM!");
     Serial.print("[node] This is node ");
-    Serial.println(nodeid);
+    Serial.println(node_id);
   }
   else {
-    Serial.println("[eeprom] Failed finding node ID in EEPROM!");
     Serial.println("[node] Please set node ID!");
-    node_restart();
+    //eeprom_setid();
   }
-
-  Serial.println(nodeid);
 
   // Start CAN communication
   if (!can_start()) {
     node_restart();
   }
 
-  //
+  // Initialise pixels and specify total number and GPIO pin
+  //pixels_start(9, 17);
 }
 
 void loop() {
