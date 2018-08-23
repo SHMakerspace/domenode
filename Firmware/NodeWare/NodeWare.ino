@@ -1,7 +1,7 @@
 /*
    NodeWare.ino
    DomeNode Firmware
-   JagDav, inversesandwich, macaba
+   JagDav, Andrew Patience, inversesandwich, macaba
    v0.1
 */
 
@@ -18,16 +18,17 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 
 // Set variables
 int node_id;
+int node_fwversion;
 const char* wifi_ssid     = "emfcamp-insecure18";
 const char* wifi_password = "";
-String mdns_hostname = "";
+String mdns_hostname = "shm-domenode-";
 String ota_server = "http://firmware.shmakerspace.org";
 int ota_port = 80;
 String ota_location = "/domenode/update/ota.php";
 String ota_fwversion = "v0.1";
 
 // Set EEPROM location in filesystem
-EEPROMClass  NODEDATA("eeprom", 0x1000);
+EEPROMClass NODEDATA("eeprom", 0x1000);
 
 void node_restart() {
   // Snippet to restart gracefully
