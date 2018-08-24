@@ -6,7 +6,7 @@
 */
 
 // Include the libraries we require
-#include "EEPROM.h"
+#include <Preferences.h>
 #include <CAN.h>
 #include <WiFi.h>
 #include <WiFiUdp.h>
@@ -17,8 +17,8 @@
 bool node_debug = true; // Enable this to prevent the ESP from restarting on an error to aid debugging
 
 // Set variables
-int node_id;
-int node_fwversion;
+int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
+int node_fwversion ;
 const char* wifi_ssid     = "emfcamp-insecure18";
 const char* wifi_password = "";
 String mdns_hostname = "shm-domenode-";
@@ -27,8 +27,8 @@ int ota_port = 80;
 String ota_location = "/domenode/update/ota.php";
 String ota_fwversion = "v0.1";
 
-// Set EEPROM location in filesystem
-EEPROMClass NODEDATA("eeprom", 0x1000);
+// Define non-volatile storage
+Preferences preferences;
 
 void node_restart() {
   // Snippet to restart gracefully
@@ -43,41 +43,31 @@ void node_restart() {
   }
 }
 
-int eeprom_start() {
-  // Start EEPROM and attempt to initialise
-  if (NODEDATA.begin(NODEDATA.length())) {
-    Serial.println("[eeprom] NODEDATA successfully initialised!");
-    return 1;
-  }
-  else {
-    Serial.println("[eeprom] Failed to initialise NODEDATA partition!");
-    return 0;
-  }
+int nvs_start() {
+  // Prepare NVS with DomeNode namespace and RW permissions
+  preferences.begin("DomeNode", false);
+  Serial.println("[nvs] Using DomeNode RW namespace!");
+  return 1;
 }
 
-int eeprom_checkid() {
-  // Check EEPROM for a node ID
-  NODEDATA.get(0, node_id);
-  if (node_id == -1) {
-    Serial.println("[eeprom] Failed finding node ID in NODEDATA!");
+int nvs_checkid() {
+  // Check NVS for a node ID
+  node_id = preferences.getUInt("id", 0);
+  if (!node_id) {
+    Serial.println("[nvs] Failed finding node ID in NVS!");
     return 0;
   }
   else {
-    Serial.println("[eeprom] Found node ID in NODEDATA!");
+    Serial.println("[nvs] Found node ID in NVS!");
     return 1;
   }
 }
 
-/* int eeprom_setid() {
-  // Set a node ID in the EEPROM if one doesn't exist
-  Serial.println("[node] Please enter the 2 digit node ID written on PCB:");
-  while (Serial.available()) {
-    // TODO: Accept an input via serial
-  }
-  //TODO: Write serial value to EEPROM
-  node_restart();
-  }
-*/
+int nvs_writeid() {
+  preferences.putUInt("id", node_id);
+  Serial.println("[nvs] Sucessfully wrote node ID to NVS");
+  return 1;
+}
 
 int can_start() {
   // Start the CAN peripheral at 500 kbps
@@ -115,6 +105,7 @@ int mdns_start(const char* hostname) {
   }
 }
 
+
 /* Commented out to compile
   int ota_start(String server, String port, String location, String fwversion) {
   // Check for firmware updates
@@ -133,7 +124,7 @@ int mdns_start(const char* hostname) {
   }
 */
 
-int pixels_start(int count, int pin){
+int pixels_start(int count, int pin) {
   // Initilise pixels
   NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> pixels(count, pin);
   Serial.println("[pixels] Successfully initialised pixels!");
@@ -148,17 +139,26 @@ void setup() {
     Serial.println("[node] DEBUG MODE ENABLED!");
   }
 
-  // Start EEPROM and check if ID has been written
-  if (!eeprom_start()) {
-    node_restart();
-  }
-  if (eeprom_checkid()) {
+  // Start NVS filesystem
+  nvs_start();
+  // Check to see if node ID has been hard-coded otherwise check NVS
+  if (node_id) {
+    Serial.print("[node] Node ID ");
+    Serial.print(node_id);
+    Serial.println(" set in firmware, writing to NVS...");
+    nvs_writeid();
     Serial.print("[node] This is node ");
     Serial.println(node_id);
-  }
-  else {
-    Serial.println("[node] Please set node ID!");
-    //eeprom_setid();
+  } else {
+    Serial.println("[node] Node ID not set in firmware, attempting to load from NVS...");
+    if (nvs_checkid()) {
+      Serial.print("[node] This is node ");
+      Serial.println(node_id);
+    }
+    else {
+      Serial.println("[node] Please set ID in firmware!");
+      node_restart();
+    }
   }
 
   // Start CAN communication
