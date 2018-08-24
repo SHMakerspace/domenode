@@ -18,6 +18,7 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 
 // Set variables
 int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
+uint64_t node_mac;
 int node_fwversion ;
 const char* wifi_ssid     = "emfcamp-insecure18";
 const char* wifi_password = "";
@@ -25,7 +26,7 @@ String mdns_hostname = "shm-domenode-";
 String ota_server = "http://firmware.shmakerspace.org";
 int ota_port = 80;
 String ota_location = "/domenode/update/ota.php";
-String ota_fwversion = "v0.1";
+String ota_fwversion = "";
 
 // Define non-volatile storage
 Preferences preferences;
@@ -41,6 +42,14 @@ void node_restart() {
     delay(5000);
     ESP.restart();
   }
+  return;
+}
+
+void node_printmac() {
+  node_mac = ESP.getEfuseMac();
+  Serial.printf("[node] MAC Address: %04X", (uint16_t)(node_mac >> 32)); // Print high 2 bytes
+  Serial.printf("%08X\n", (uint32_t)node_mac); // Print low 4 bytes.
+  return;
 }
 
 int nvs_start() {
@@ -138,6 +147,7 @@ void setup() {
   if (node_debug) {
     Serial.println("[node] DEBUG MODE ENABLED!");
   }
+  node_printmac();
 
   // Start NVS filesystem
   nvs_start();
