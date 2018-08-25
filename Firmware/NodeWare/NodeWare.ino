@@ -32,7 +32,7 @@ String ota_fwversion = "";
 Preferences preferences;
 
 void node_restart() {
-  // Snippet to restart gracefully
+  // Restart gracefully
   if (node_debug) {
     Serial.println("[node] Debug mode enabled, ESP will not restart!");
     while (true);
@@ -45,17 +45,24 @@ void node_restart() {
   return;
 }
 
-void node_printmac() {
+int node_printmac() {
   node_mac = ESP.getEfuseMac();
   Serial.printf("[node] MAC Address: %04X", (uint16_t)(node_mac >> 32)); // Print high 2 bytes
   Serial.printf("%08X\n", (uint32_t)node_mac); // Print low 4 bytes.
-  return;
+  return 1;
 }
 
 int nvs_start() {
-  // Prepare NVS with DomeNode namespace and RW permissions
+  // Mount DomeNode namespace and RW permissions
+  Serial.println("[nvs] Mounting DomeNode RW namespace...");
   preferences.begin("DomeNode", false);
-  Serial.println("[nvs] Using DomeNode RW namespace!");
+  return 1;
+}
+
+int nvs_stop() {
+  // Unmount NVS if mounted to a namespace
+  Serial.println("[nvs] Unmounting NVS...");
+  preferences.end();
   return 1;
 }
 
@@ -73,9 +80,29 @@ int nvs_checkid() {
 }
 
 int nvs_writeid() {
+  // Write node ID to NVS
   preferences.putUInt("id", node_id);
   Serial.println("[nvs] Sucessfully wrote node ID to NVS");
   return 1;
+}
+
+int nvs_prepid() {
+  // Check to see if node ID has been hard-coded otherwise check NVS
+  if (node_id) {
+    Serial.print("[node] Node ID ");
+    Serial.print(node_id);
+    Serial.println(" set in firmware, writing to NVS...");
+    nvs_writeid();
+    return 1;
+  } else {
+    Serial.println("[node] Node ID not set in firmware, attempting to load from NVS...");
+    if (nvs_checkid()) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
+  }
 }
 
 int can_start() {
@@ -147,28 +174,20 @@ void setup() {
   if (node_debug) {
     Serial.println("[node] DEBUG MODE ENABLED!");
   }
+
+  // Print MAC address of the ESP32
   node_printmac();
 
-  // Start NVS filesystem
+  // Start NVS filesystem and prep ID
   nvs_start();
-  // Check to see if node ID has been hard-coded otherwise check NVS
-  if (node_id) {
-    Serial.print("[node] Node ID ");
-    Serial.print(node_id);
-    Serial.println(" set in firmware, writing to NVS...");
-    nvs_writeid();
+  if (nvs_prepid()) {
+    nvs_stop();
     Serial.print("[node] This is node ");
     Serial.println(node_id);
   } else {
-    Serial.println("[node] Node ID not set in firmware, attempting to load from NVS...");
-    if (nvs_checkid()) {
-      Serial.print("[node] This is node ");
-      Serial.println(node_id);
-    }
-    else {
-      Serial.println("[node] Please set ID in firmware!");
-      node_restart();
-    }
+    nvs_stop();
+    Serial.println("[node] Please set ID in firmware!");
+    node_restart();
   }
 
   // Start CAN communication
