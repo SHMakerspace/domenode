@@ -18,7 +18,8 @@
 
 // Define pin numbers
 #define pin_heartbeat LED_BUILTIN
-#define pin_touch T8
+#define pin_touch T5
+#define pin_pixels 16
 
 // Debug variables
 bool node_debug = true; // Enable this to prevent the ESP from restarting on an error to aid debugging
@@ -28,7 +29,7 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
 uint64_t node_mac;
 int node_fwversion ;
-// * WiFi variables 
+// * WiFi variables
 /*** PLEASE DOUBLE CHECK CREDENTIALS BEFORE UPLOADING, IF THEY ARE INCORRECT OTA UPDATES WILL BE IMPOSSIBLE AND YOU'LL HAVE TO MANUALLY REPROGRAM ALL THE NODES VIA SERIAL. YOU HAVE BEEN WARNED! ***
  *** IF COMMITING TO A GIT REPO, PLEASE REMOVE CREDENTIALS BEFORE DOING SO! ***/
 char* wifi_ssid     = "";
@@ -49,9 +50,21 @@ const float heartbeat_period = 2; //seconds
 // * Touch variables
 bool touch_detected = false;
 int touch_threshold = 40;
+// * Pixel variable
+const uint16_t pixels_quantity = 9;
+
 
 // Define non-volatile storage
 Preferences preferences;
+
+// Define pixels and colours
+NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
+RgbColor red(127, 0, 0);
+RgbColor green(0, 127, 0);
+RgbColor blue(0, 0, 127);
+RgbColor white(127);
+RgbColor black(0);
+RgbColor shm(98, 0, 116);
 
 void node_restart() {
   // Restart gracefully
@@ -73,9 +86,10 @@ int node_printmac(uint64_t mac) {
   return 1;
 }
 
-void heartbeat_start() {
+int heartbeat_start() {
   pinMode(pin_heartbeat, OUTPUT);
   heartbeat_toggler.attach(heartbeat_period, heartbeat_toggle);
+  return 1;
 }
 
 void heartbeat_blink() {
@@ -272,15 +286,12 @@ int ota_arduino_start() {
   }
 */
 
-/*
-  int pixels_start(int count, int pin) {
+int pixels_start() {
   // Initilise pixels
   pixels.Begin();
-  pixels.Show();
   Serial.println("[pixels] Successfully initialised pixels!");
   return 1;
-  }
-*/
+}
 
 void setup() {
   // Start serial communication for debug
@@ -326,6 +337,12 @@ void setup() {
   // Attach capative ring sense to an interrupt
   Serial.println("[touch] Attaching interrupt to capacitive sensor...");
   touchAttachInterrupt(pin_touch, touch_interrupt, touch_threshold);
+
+  // Setup pixels and set to SHM purple
+  pixels_start();
+  for (int pixel_number = 0; pixel_number < 8; pixel_number++) {
+    pixels.SetPixelColor(pixel_number, shm);
+  }
 }
 
 void loop() {
@@ -341,4 +358,7 @@ void loop() {
     CAN.write(true);
     CAN.endPacket();
   }
+
+  // Update pixels
+  pixels.Show();
 }
