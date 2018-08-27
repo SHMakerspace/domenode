@@ -28,7 +28,9 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
 uint64_t node_mac;
 int node_fwversion ;
-// * WiFi variables
+// * WiFi variables 
+/*** PLEASE DOUBLE CHECK CREDENTIALS BEFORE UPLOADING, IF THEY ARE INCORRECT OTA UPDATES WILL BE IMPOSSIBLE AND YOU'LL HAVE TO MANUALLY REPROGRAM ALL THE NODES VIA SERIAL. YOU HAVE BEEN WARNED! ***
+ *** IF COMMITING TO A GIT REPO, PLEASE REMOVE CREDENTIALS BEFORE DOING SO! ***/
 char* wifi_ssid     = "";
 char* wifi_password = "";
 // * mDNS variables
