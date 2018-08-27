@@ -18,7 +18,7 @@
 
 // Define pin numbers
 #define pin_heartbeat LED_BUILTIN
-#define pin_touch T5
+#define pin_touch 14
 #define pin_pixels 16
 
 // Debug variables
@@ -32,8 +32,8 @@ int node_fwversion ;
 // * WiFi variables
 /*** PLEASE DOUBLE CHECK CREDENTIALS BEFORE UPLOADING, IF THEY ARE INCORRECT OTA UPDATES WILL BE IMPOSSIBLE AND YOU'LL HAVE TO MANUALLY REPROGRAM ALL THE NODES VIA SERIAL. YOU HAVE BEEN WARNED! ***
  *** IF COMMITING TO A GIT REPO, PLEASE REMOVE CREDENTIALS BEFORE DOING SO! ***/
-char* wifi_ssid     = "";
-char* wifi_password = "";
+char* wifi_ssid     = "SHM";
+char* wifi_password = "hackmeplease";
 // * mDNS variables
 String mdns_hostname = "shm-domenode-";
 char mdns_hostnamebuffer[32];
@@ -49,7 +49,7 @@ float heartbeat_pace = 0.05;  //seconds
 const float heartbeat_period = 2; //seconds
 // * Touch variables
 bool touch_detected = false;
-int touch_threshold = 40;
+int touch_threshold = 25;
 // * Pixel variable
 const uint16_t pixels_quantity = 9;
 
@@ -59,11 +59,13 @@ Preferences preferences;
 
 // Define pixels and colours
 NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
+NeoGamma<NeoGammaTableMethod> pixels_gamma;
 RgbColor red(127, 0, 0);
 RgbColor green(0, 127, 0);
 RgbColor blue(0, 0, 127);
 RgbColor white(127);
-RgbColor black(0);
+RgbColor inactive(70, 0, 0);
+RgbColor off(0);
 RgbColor shm(98, 0, 116);
 
 void node_restart() {
@@ -249,6 +251,7 @@ int ota_arduino_start() {
       type = "filesystem";
 
     // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+    CAN.sleep();
     Serial.println("[ota] Update invitation recieved, update type is " + type + "!");
   })
   .onEnd([]() {
@@ -338,11 +341,15 @@ void setup() {
   Serial.println("[touch] Attaching interrupt to capacitive sensor...");
   touchAttachInterrupt(pin_touch, touch_interrupt, touch_threshold);
 
-  // Setup pixels and set to SHM purple
+  // Setup pixels and correct color gamma
   pixels_start();
-  for (int pixel_number = 0; pixel_number < 8; pixel_number++) {
-    pixels.SetPixelColor(pixel_number, shm);
-  }
+  shm = pixels_gamma.Correct(shm);
+  inactive = pixels_gamma.Correct(inactive);
+  red = pixels_gamma.Correct(red);
+  green = pixels_gamma.Correct(green);
+  blue = pixels_gamma.Correct(blue);
+  white = pixels_gamma.Correct(white);
+
 }
 
 void loop() {
@@ -353,12 +360,22 @@ void loop() {
   if (touch_detected) {
     touch_detected = false;
     Serial.println("[touch] Interrupt triggered!");
-    Serial.println("[can] Sending CAN packet with node ID 0000001, function code 0001...");
-    CAN.beginPacket(0x81); // Node ID 000001, Function code 0001 (testing only)
-    CAN.write(true);
-    CAN.endPacket();
+    /*
+      Serial.println("[can] Sending CAN packet with node ID 0000001, function code 0001...");
+      CAN.beginPacket(0x81); // Node ID 000001, Function code 0001 (testing only)
+      CAN.write(true);
+      CAN.endPacket();
+    */
+    for (int pixel_number = 0; pixel_number < 9; pixel_number++) {
+      pixels.SetPixelColor(pixel_number, shm);
+    }
+  } else {
+    for (int pixel_number = 0; pixel_number < 9; pixel_number++) {
+      pixels.SetPixelColor(pixel_number, inactive);
+    }
   }
 
   // Update pixels
   pixels.Show();
+  delay(40);
 }
