@@ -10,6 +10,7 @@
 #include <Ticker.h>
 #include <CAN.h>
 #include <WiFi.h>
+#include <WiFiMulti.h>
 #include <WiFiUdp.h>
 #include <ESPmDNS.h>
 #include <ArduinoOTA.h>
@@ -28,11 +29,6 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
 uint64_t node_mac;
 int node_fwversion ;
-// * WiFi variables
-/*** PLEASE DOUBLE CHECK CREDENTIALS BEFORE UPLOADING, IF THEY ARE INCORRECT OTA UPDATES WILL BE IMPOSSIBLE AND YOU'LL HAVE TO MANUALLY REPROGRAM ALL THE NODES VIA SERIAL. YOU HAVE BEEN WARNED! ***
- *** IF COMMITING TO A GIT REPO, PLEASE REMOVE CREDENTIALS BEFORE DOING SO! ***/
-char* wifi_ssid     = "SHM";
-char* wifi_password = "hackmeplease";
 // * mDNS variables
 String mdns_hostname = "shm-domenode-";
 char mdns_hostnamebuffer[32];
@@ -48,12 +44,13 @@ int touch_threshold = 25;
 const uint16_t pixels_quantity = 9;
 const uint8_t pixels_brightness = 255;
 
+WiFiMulti wifi_multi;
 
 // Define non-volatile storage
 Preferences preferences;
 
 // Define pixels, colours and effects
-NeoPixelBrightnessBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
+NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp32I2s1800KbpsMethod> pixels(pixels_quantity, pin_pixels);
 RgbColor red(127, 0, 0);
 RgbColor green(0, 127, 0);
 RgbColor blue(0, 0, 127);
@@ -220,11 +217,13 @@ void can_recievecallback(int packetSize) {
   }
 }
 
-int wifi_start(char* ssid, char* password) {
-  // Start WiFi client and connect to predefined SSID
-  Serial.print("[wifi] Attemping to connection to network");
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
+int wifi_start() {
+  // Start WiFi client and connect to predefined SSIDs
+  wifi_multi.addAP("SHM", "hackmeplease");
+  wifi_multi.addAP("emfcamp-insecure18", "");
+  
+  Serial.print("[wifi] Attemping to connection to a network");
+  while (wifi_multi.run() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
   }
@@ -248,11 +247,7 @@ int mdns_start(const char* hostname) {
 }
 
 void touch_interrupt() {
-  for (int pixel = 0; pixel < 9; pixel++) {
-    pixels.SetPixelColor(pixel, shm);
-  }
-  pixels.Show();
-  delay(100);
+  touch_detected = true;
 }
 
 int ota_arduino_start() {
@@ -336,7 +331,7 @@ void setup() {
   }
 
   // Start WiFi communication
-  wifi_start(wifi_ssid, wifi_password);
+  wifi_start();
 
   // Setup OTA updating (via IDE) and advertise service over network
   ota_arduino_start();
@@ -352,23 +347,30 @@ void setup() {
 }
 
 void loop() {
-  // Check if OTA invitation has been recieved
-  ArduinoOTA.handle();
-
   // Rainbow!
-  for (uint16_t j = 0; j < 256 * 5; j++) // complete 5 cycles around the color wheel
-  {
-    for (uint16_t i = 0; i < pixels_quantity; i++)
-    {
-      // generate a value between 0~255 according to the position of the pixel
-      // along the pixels
-      rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
-      // calculate the color for the ith pixel
-      rainbow_color = rainbow_wheel( rainbow_pos );
-      // set the color of the ith pixel
-      pixels.SetPixelColor(i, rainbow_color);
+  for (uint16_t j = 0; j < 256; j++) {
+    if (touch_detected) {
+      for (int pixel = 0; pixel < 9; pixel++) {
+        pixels.SetPixelColor(pixel, shm);
+      }
+      pixels.Show();
+      delay(50);
+      touch_detected = false;
     }
+    else {
+      for (uint16_t i = 0; i < pixels_quantity; i++) {
+        // generate a value between 0~255 according to the position of the pixel
+        // along the pixels
+        rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
+        // calculate the color for the ith pixel
+        rainbow_color = rainbow_wheel( rainbow_pos );
+        // set the color of the ith pixel
+        pixels.SetPixelColor(i, rainbow_color);
+      }
+    }
+    // Check if OTA invitation has been recieved
+    ArduinoOTA.handle();
+    pixels.Show();
+    delay(50);
   }
-  pixels.Show();
-  delay(50);
 }
