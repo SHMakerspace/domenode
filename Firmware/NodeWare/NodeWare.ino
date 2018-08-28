@@ -36,11 +36,6 @@ char* wifi_password = "hackmeplease";
 // * mDNS variables
 String mdns_hostname = "shm-domenode-";
 char mdns_hostnamebuffer[32];
-// * OTA variables
-String ota_server = "http://firmware.shmakerspace.org";
-int ota_port = 80;
-String ota_location = "/domenode/update/ota.php";
-String ota_fwversion = "";
 // * Heartbeat variables
 Ticker heartbeat_blinker;
 Ticker heartbeat_toggler;
@@ -57,9 +52,8 @@ const uint8_t pixels_brightness = 255;
 // Define non-volatile storage
 Preferences preferences;
 
-// Define pixels and colours
+// Define pixels, colours and effects
 NeoPixelBrightnessBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
-NeoGamma<NeoGammaTableMethod> pixels_gamma;
 RgbColor red(127, 0, 0);
 RgbColor green(0, 127, 0);
 RgbColor blue(0, 0, 127);
@@ -67,6 +61,24 @@ RgbColor white(127);
 RgbColor inactive(70, 0, 0);
 RgbColor off(0);
 RgbColor shm(98, 0, 116);
+RgbColor rainbow_color;
+uint8_t rainbow_pos;
+RgbColor rainbow_wheel(uint8_t rainbow_wheelpos)
+{
+  rainbow_wheelpos = 255 - rainbow_wheelpos;
+  if (rainbow_wheelpos < 85)
+  {
+    return RgbColor(255 - rainbow_wheelpos * 3, 0, rainbow_wheelpos * 3);
+  } else if (rainbow_wheelpos < 170)
+  {
+    rainbow_wheelpos -= 85;
+    return RgbColor(0, rainbow_wheelpos * 3, 255 - rainbow_wheelpos * 3);
+  } else
+  {
+    rainbow_wheelpos -= 170;
+    return RgbColor(rainbow_wheelpos * 3, 255 - rainbow_wheelpos * 3, 0);
+  }
+}
 
 void node_restart() {
   // Restart gracefully
@@ -177,7 +189,7 @@ int can_start() {
   }
 }
 
-int can_sendpacket(byte function, char message) {
+int can_sendpacket(char message) {
   // TODO
   return 1;
 }
@@ -236,7 +248,11 @@ int mdns_start(const char* hostname) {
 }
 
 void touch_interrupt() {
-  touch_detected = true;
+  for (int pixel = 0; pixel < 9; pixel++) {
+    pixels.SetPixelColor(pixel, shm);
+  }
+  pixels.Show();
+  delay(100);
 }
 
 int ota_arduino_start() {
@@ -272,28 +288,14 @@ int ota_arduino_start() {
   ArduinoOTA.begin();
 }
 
-/* Commented out to compile
-  int ota_http_start(String server, String port, String location, String fwversion) {
-  // Check for firmware updates
-  //t_httpUpdate_return ret = ESPhttpUpdate.update(server, port, location, fwversion);
-  switch (ret) {
-    case HTTP_UPDATE_FAILED:
-      Serial.println("[ota] Update failed!");
-      break;
-    case HTTP_UPDATE_NO_UPDATES:
-      Serial.println("[ota] No update required.");
-      break;
-    case HTTP_UPDATE_OK:
-      Serial.println("[ota] Update found! Starting firmware update ");
-      break;
-  }
-  }
-*/
-
 int pixels_start() {
   // Initilise pixels
   pixels.Begin();
   pixels.SetBrightness(pixels_brightness);
+  for (int pixel = 0; pixel < 9; pixel++) {
+    pixels.SetPixelColor(pixel, inactive);
+  }
+  pixels.Show();
   Serial.println("[pixels] Successfully initialised pixels!");
   return 1;
 }
@@ -345,12 +347,7 @@ void setup() {
 
   // Setup pixels and correct color gamma
   pixels_start();
-  shm = pixels_gamma.Correct(shm);
-  inactive = pixels_gamma.Correct(inactive);
-  red = pixels_gamma.Correct(red);
-  green = pixels_gamma.Correct(green);
-  blue = pixels_gamma.Correct(blue);
-  white = pixels_gamma.Correct(white);
+  pixels.Show();
 
 }
 
@@ -359,25 +356,17 @@ void loop() {
   ArduinoOTA.handle();
 
   // Check if touch interrupt has been triggered
-  if (touch_detected) {
-    touch_detected = false;
-    Serial.println("[touch] Interrupt triggered!");
-    /*
-      Serial.println("[can] Sending CAN packet with node ID 0000001, function code 0001...");
-      CAN.beginPacket(0x81); // Node ID 000001, Function code 0001 (testing only)
-      CAN.write(true);
-      CAN.endPacket();
-    */
-    for (int pixel_number = 0; pixel_number < 9; pixel_number++) {
-      pixels.SetPixelColor(pixel_number, shm);
-    }
-  } else {
-    for (int pixel_number = 0; pixel_number < 9; pixel_number++) {
-      pixels.SetPixelColor(pixel_number, inactive);
-    }
+  for (uint16_t i = 0; i < pixels_quantity; i++)
+  {
+    // generate a value between 0~255 according to the position of the pixel
+    // along the pixels
+    rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
+    // calculate the color for the ith pixel
+    rainbow_color = rainbow_wheel( rainbow_pos );
+    // set the color of the ith pixel
+    pixels.SetPixelColor(i, rainbow_color);
   }
-
-  // Update pixels
   pixels.Show();
-  delay(100);
+  delay(50);
+}
 }
