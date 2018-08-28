@@ -19,8 +19,8 @@ To compile the firmware correctly for the DomeNode, please ensure your Arduino I
 * Core debug level: None
 
 ## Node IDs
-To assign an ID to a node, simply set the `node_id` to your chosen ID and it will be persistantly stored.
+To assign an ID to a node, simply set the `node_id` to your chosen ID and it will be persistantly stored. You only need this variable set once, you can remove it from future firmware uploads it it'll retrive the last set ID from flash memory.
 
 ## OTA updates
 To update via OTA, first flash the firmware over serial, ensuring that you have changed the WiFi credentials to the same network your machine running the Arduino IDE is connected to.
-When the DomeNode connects to your network, navigate to the 'Port' option under the 'Tools' in the Arduino IDE. You should see a network 
+When the DomeNode connects to your network, navigate to the 'Port' option under the 'Tools' in the Arduino IDE. You should your DomeNode appear under the serial ports.
