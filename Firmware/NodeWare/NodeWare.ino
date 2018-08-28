@@ -13,8 +13,7 @@
 #include <WiFiUdp.h>
 #include <ESPmDNS.h>
 #include <ArduinoOTA.h>
-#include <NeoPixelBus.h>
-#include <NeoPixelAnimator.h>
+#include <NeoPixelBrightnessBus.h>
 
 // Define pin numbers
 #define pin_heartbeat 22
@@ -52,13 +51,14 @@ bool touch_detected = false;
 int touch_threshold = 25;
 // * Pixel variable
 const uint16_t pixels_quantity = 9;
+const uint8_t pixels_brightness = 255;
 
 
 // Define non-volatile storage
 Preferences preferences;
 
 // Define pixels and colours
-NeoPixelBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
+NeoPixelBrightnessBus<NeoGrbFeature, Neo800KbpsMethod> pixels(pixels_quantity, pin_pixels);
 NeoGamma<NeoGammaTableMethod> pixels_gamma;
 RgbColor red(127, 0, 0);
 RgbColor green(0, 127, 0);
@@ -252,7 +252,7 @@ int ota_arduino_start() {
 
     // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
     CAN.sleep();
-    
+
     Serial.println("[ota] Update invitation recieved, update type is " + type + "!");
   })
   .onEnd([]() {
@@ -293,6 +293,7 @@ int ota_arduino_start() {
 int pixels_start() {
   // Initilise pixels
   pixels.Begin();
+  pixels.SetBrightness(pixels_brightness);
   Serial.println("[pixels] Successfully initialised pixels!");
   return 1;
 }
