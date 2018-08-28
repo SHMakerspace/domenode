@@ -355,18 +355,20 @@ void loop() {
   // Check if OTA invitation has been recieved
   ArduinoOTA.handle();
 
-  // Check if touch interrupt has been triggered
-  for (uint16_t i = 0; i < pixels_quantity; i++)
+  // Rainbow!
+  for (uint16_t j = 0; j < 256 * 5; j++) // complete 5 cycles around the color wheel
   {
-    // generate a value between 0~255 according to the position of the pixel
-    // along the pixels
-    rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
-    // calculate the color for the ith pixel
-    rainbow_color = rainbow_wheel( rainbow_pos );
-    // set the color of the ith pixel
-    pixels.SetPixelColor(i, rainbow_color);
+    for (uint16_t i = 0; i < pixels_quantity; i++)
+    {
+      // generate a value between 0~255 according to the position of the pixel
+      // along the pixels
+      rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
+      // calculate the color for the ith pixel
+      rainbow_color = rainbow_wheel( rainbow_pos );
+      // set the color of the ith pixel
+      pixels.SetPixelColor(i, rainbow_color);
+    }
   }
   pixels.Show();
   delay(50);
-}
 }
