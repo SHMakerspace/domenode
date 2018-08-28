@@ -17,7 +17,7 @@
 #include <NeoPixelAnimator.h>
 
 // Define pin numbers
-#define pin_heartbeat LED_BUILTIN
+#define pin_heartbeat 22
 #define pin_touch 14
 #define pin_pixels 16
 
@@ -252,6 +252,7 @@ int ota_arduino_start() {
 
     // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
     CAN.sleep();
+    
     Serial.println("[ota] Update invitation recieved, update type is " + type + "!");
   })
   .onEnd([]() {
@@ -377,5 +378,5 @@ void loop() {
 
   // Update pixels
   pixels.Show();
-  delay(40);
+  delay(100);
 }
