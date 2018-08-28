@@ -1,6 +1,6 @@
-[submodule "Firmware\\NodeWare\\libraries\\CAN"]
-	path = Firmware\\NodeWare\\libraries\\CAN
+[submodule "Firmware/NodeWare/libraries/CAN"]
+	path = Firmware/NodeWare/libraries/CAN
 	url = https://github.com/sandeepmistry/arduino-CAN
-[submodule "Firmware\\NodeWare\\libraries\\NeoPixelBus_by_Makuna"]
-	path = Firmware\\NodeWare\\libraries\\NeoPixelBus_by_Makuna
+[submodule "Firmware/NodeWare/libraries/NeoPixelBus_by_Makuna"]
+	path = Firmware/NodeWare/libraries/NeoPixelBus_by_Makuna
 	url = https://github.com/Makuna/NeoPixelBus
