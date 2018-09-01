@@ -26,7 +26,7 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 
 // Set variables
 // * Node variables
-int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
+int node_id = 11; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
 uint64_t node_mac;
 int node_fwversion ;
 // * mDNS variables
@@ -224,13 +224,20 @@ int wifi_start() {
   
   Serial.print("[wifi] Attemping to connection to a network");
   while (wifi_multi.run() != WL_CONNECTED) {
+    pixels.setColor(0, red);
+    pixels.Show();
     delay(500);
     Serial.print(".");
+    pixels.setColor(0, off);
+    pixels.Show();
+    delay(500);
   }
+  pixels.setColor(1, green);
   Serial.println("");
   Serial.println("[wifi] Successfully connected to network!");
   Serial.print("[wifi] IP address: ");
   Serial.println(WiFi.localIP());
+  delay(500);
   return 1;
 }
 
@@ -329,21 +336,19 @@ void setup() {
   if (!can_start()) {
     node_restart();
   }
-
+  // Setup pixels and correct color gamma
+  pixels_start();
+  pixels.Show();
+  
   // Start WiFi communication
   wifi_start();
-
+  
   // Setup OTA updating (via IDE) and advertise service over network
   ota_arduino_start();
 
   // Attach capative ring sense to an interrupt
   Serial.println("[touch] Attaching interrupt to capacitive sensor...");
   touchAttachInterrupt(pin_touch, touch_interrupt, touch_threshold);
-
-  // Setup pixels and correct color gamma
-  pixels_start();
-  pixels.Show();
-
 }
 
 void loop() {
