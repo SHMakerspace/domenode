@@ -276,6 +276,9 @@ int ota_arduino_start() {
   })
   .onEnd([]() {
     Serial.println("\n [ota] Update download finished!");
+	pixels.setColor(0, green);
+	pixels.show();
+	delay(500);
   })
   .onProgress([](unsigned int progress, unsigned int total) {
     Serial.printf("[ota] Update progress: %u%%\r", (progress / (total / 100)));
