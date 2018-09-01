@@ -54,6 +54,7 @@ NeoPixelBrightnessBus<NeoGrbFeature, NeoEsp32I2s1800KbpsMethod> pixels(pixels_qu
 RgbColor red(127, 0, 0);
 RgbColor green(0, 127, 0);
 RgbColor blue(0, 0, 127);
+RgbColor yellow(255, 255, 0);
 RgbColor white(127);
 RgbColor inactive(70, 0, 0);
 RgbColor off(0);
@@ -287,6 +288,10 @@ int ota_arduino_start() {
     else if (error == OTA_RECEIVE_ERROR) Serial.println("Download failed!");
     else if (error == OTA_END_ERROR) Serial.println("Couldn't finish!");
   });
+
+  // Middle pixel yellow on OTA update
+  pixels.setColor(0, yellow);
+  pixels.show();
   ArduinoOTA.begin();
 }
 
