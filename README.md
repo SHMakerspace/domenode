@@ -45,6 +45,7 @@ Optional features by means of populating those pads are:
 * 1x 2 pin SW0 flashing header
 * 2x 0805 LED (power and blink)
 * 2x 0603 resistors for LEDs (470 and 1k)
+* 1x 0603 10k resistor EN (very much needed, R10)
 
 ## 2. NeoPixels
 * 9x WS2812 LEDs
@@ -65,3 +66,17 @@ Optional features by means of populating those pads are:
 * 1x 0603 10k resistor (R17)
 * 1x 0603 100nF capacitor (C14, decoupling)
 
+
+# Serial Programming
+Order is:
+Black, Green, White, Red 
+(GND), (Rx), (Tx), (5V)
+
+#Flashing Procedure
+* 1. Determine COM port with command `mode`
+* 2. Open terminal in esp32 python environment
+* 3. esptool --chip esp32 -p COM<x> write_flash -z 0x1000 <firmware_bin>
+
+Uploading files
+
+ampy -p COM<x> put <file>

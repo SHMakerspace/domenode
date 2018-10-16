@@ -1,7 +1,7 @@
 /*
    NodeWare.ino
    DomeNode Firmware
-   JagDav, Andrew Patience, inversesandwich, macaba
+   JagDev, Andrew Patience, inversesandwich, macaba
    v0.1
 */
 
@@ -26,7 +26,7 @@ bool node_debug = true; // Enable this to prevent the ESP from restarting on an 
 
 // Set variables
 // * Node variables
-int node_id = 11; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
+int node_id; // Leave this varible empty to read from EEPROM at boot, or set a value and it'll be written to the EEPROM
 uint64_t node_mac;
 int node_fwversion ;
 // * mDNS variables
@@ -174,66 +174,37 @@ int nvs_prepid() {
   }
 }
 
-int can_start() {
-  // Start the CAN peripheral at 500 kbps
-  if (CAN.begin(500E3)) {
-    Serial.println("[can] CAN started successfully at 500kbps!");
-    CAN.onReceive(can_recievecallback);
-    return 1;
-  }
-  else {
-    Serial.println("[can] Starting CAN failed!");
-    return 0;
-  }
-}
-
-int can_sendpacket(char message) {
-  // TODO
-  return 1;
-}
-
-void can_recievecallback(int packetSize) {
-  // received a packet
-  Serial.print("[can] Received ");
-  if (CAN.packetExtended()) {
-    Serial.print("extended ");
-  }
-  if (CAN.packetRtr()) {
-    // Remote transmission request, packet contains no data
-    Serial.print("RTR ");
-  }
-  Serial.print("packet with id 0x");
-  Serial.print(CAN.packetId(), HEX);
-  if (CAN.packetRtr()) {
-    Serial.print(" and requested length ");
-    Serial.println(CAN.packetDlc());
-  }
-  else {
-    Serial.print(" and length ");
-    Serial.println(packetSize);
-    // only print packet data for non-RTR packets
-    while (CAN.available()) {
-      Serial.println((char)CAN.read());
-    }
-  }
-}
 
 int wifi_start() {
   // Start WiFi client and connect to predefined SSIDs
   wifi_multi.addAP("SHM", "hackmeplease");
-  wifi_multi.addAP("emfcamp-insecure18", "");
+  wifi_multi.addAP("emfcamp-insecure18", "emf");
   
   Serial.print("[wifi] Attemping to connection to a network");
   while (wifi_multi.run() != WL_CONNECTED) {
-    pixels.setColor(0, red);
-    pixels.Show();
-    delay(500);
-    Serial.print(".");
-    pixels.setColor(0, off);
-    pixels.Show();
-    delay(500);
+	// Blinking red until connected to wifi
+    int blink = 3;
+	  int count = 0;
+	  while (count < blink) {
+		  pixels.SetPixelColor(0, red);
+		  pixels.Show();
+		  delay(200);
+		  Serial.print(".");
+		  pixels.SetPixelColor(0, off);
+		  pixels.Show();
+		  delay(200);
+		  count++;
+	  }
+	pixels.SetPixelColor(0, red);
+	pixels.Show();
+	delay(1000);
+	pixels.SetPixelColor(0, off);
+	delay(500);
   }
-  pixels.setColor(1, green);
+  
+  pixels.SetPixelColor(0, green);
+  pixels.Show();
+  delay(500);
   Serial.println("");
   Serial.println("[wifi] Successfully connected to network!");
   Serial.print("[wifi] IP address: ");
@@ -257,53 +228,13 @@ int mdns_start(const char* hostname) {
 void touch_interrupt() {
   touch_detected = true;
 }
-
-int ota_arduino_start() {
-  mdns_hostname.toCharArray(mdns_hostnamebuffer, 32);
-  ArduinoOTA.setHostname(mdns_hostnamebuffer);
-  ArduinoOTA.setPasswordHash("b413dd8e153df6ad2938814c7858860c"); //hackmeplease
-  ArduinoOTA.onStart([]() {
-    String type;
-    if (ArduinoOTA.getCommand() == U_FLASH)
-      type = "sketch";
-    else // U_SPIFFS
-      type = "filesystem";
-
-    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
-    CAN.sleep();
-
-    Serial.println("[ota] Update invitation recieved, update type is " + type + "!");
-  })
-  .onEnd([]() {
-    Serial.println("\n [ota] Update download finished!");
-	pixels.setColor(0, green);
-	pixels.show();
-	delay(500);
-  })
-  .onProgress([](unsigned int progress, unsigned int total) {
-    Serial.printf("[ota] Update progress: %u%%\r", (progress / (total / 100)));
-  })
-  .onError([](ota_error_t error) {
-    Serial.printf("[ota] Error[%u]: ", error);
-    if (error == OTA_AUTH_ERROR) Serial.println("Authentication failed!");
-    else if (error == OTA_BEGIN_ERROR) Serial.println("Couldn't start!");
-    else if (error == OTA_CONNECT_ERROR) Serial.println("Connection failed!");
-    else if (error == OTA_RECEIVE_ERROR) Serial.println("Download failed!");
-    else if (error == OTA_END_ERROR) Serial.println("Couldn't finish!");
-  });
-
-  // Middle pixel yellow on OTA update
-  pixels.setColor(0, yellow);
-  pixels.show();
-  ArduinoOTA.begin();
-}
-
 int pixels_start() {
   // Initilise pixels
   pixels.Begin();
   pixels.SetBrightness(pixels_brightness);
   for (int pixel = 0; pixel < 9; pixel++) {
-    pixels.SetPixelColor(pixel, inactive);
+    //pixels.SetPixelColor(pixel, inactive);
+    pixels.SetPixelColor(pixel, off);
   }
   pixels.Show();
   Serial.println("[pixels] Successfully initialised pixels!");
@@ -356,34 +287,17 @@ void setup() {
 
   // Attach capative ring sense to an interrupt
   Serial.println("[touch] Attaching interrupt to capacitive sensor...");
-  touchAttachInterrupt(pin_touch, touch_interrupt, touch_threshold);
+  //touchAttachInterrupt(pin_touch, touch_interrupt, touch_threshold);
 }
 
 void loop() {
-  // Rainbow!
-  for (uint16_t j = 0; j < 256; j++) {
-    if (touch_detected) {
-      for (int pixel = 0; pixel < 9; pixel++) {
-        pixels.SetPixelColor(pixel, shm);
-      }
-      pixels.Show();
-      delay(50);
-      touch_detected = false;
-    }
-    else {
-      for (uint16_t i = 0; i < pixels_quantity; i++) {
-        // generate a value between 0~255 according to the position of the pixel
-        // along the pixels
-        rainbow_pos = ((i * 256 / pixels_quantity) + j) & 0xFF;
-        // calculate the color for the ith pixel
-        rainbow_color = rainbow_wheel( rainbow_pos );
-        // set the color of the ith pixel
-        pixels.SetPixelColor(i, rainbow_color);
-      }
-    }
-    // Check if OTA invitation has been recieved
-    ArduinoOTA.handle();
-    pixels.Show();
-    delay(50);
-  }
+  // blink
+  pixels.SetPixelColor(0, blue);
+  pixels.Show();
+  // Check if OTA invitation has been recieved
+  ArduinoOTA.handle();
+  delay(500);
+  pixels.SetPixelColor(0, off);
+  pixels.Show();
+  delay(500);
 }
