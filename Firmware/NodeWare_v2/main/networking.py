@@ -1,4 +1,5 @@
 import network
+from pixels import Pixels
 
 wlan = network.WLAN(network.STA_IF) # create station interface
 wlan.active(True)       # activate the interface
@@ -12,11 +13,14 @@ ap = network.WLAN(network.AP_IF) # create access-point interface
 ap.config(essid='ESP-AP') # set the ESSID of the access point
 ap.active(True)         # activate the interface
 
+p = Pixels(16)
+
 def do_connect():
     import network
     wlan = network.WLAN(network.STA_IF)
     wlan.active(True)
     if not wlan.isconnected():
+        p.wifi_connecting()
         print('connecting to network...')
         wlan.connect('essid', 'password')
         while not wlan.isconnected():
