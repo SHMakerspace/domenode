@@ -3,3 +3,7 @@ domenode-cache\.lib
 
 *.bak
 *.ods#
+
+Hardware/DistBoard/distboard-cache.lib
+
+*.bin
