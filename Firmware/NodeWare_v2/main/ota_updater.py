@@ -1,10 +1,10 @@
-# 1000 x dank aan Evelien die mijn in deze tijden gesteund heeft
-# ohja, en er is ook nog tante suker (Jana Dej.) die graag kinderen wilt maar het zelf nog niet beseft
+# OTAUpdater with pixel modifications
 
 import usocket
 import os
 import gc
 import machine
+import networking
 
 
 class OTAUpdater:
@@ -16,17 +16,6 @@ class OTAUpdater:
         self.module = module.rstrip('/')
 
     @staticmethod
-    def using_network(ssid, password):
-        import network
-        sta_if = network.WLAN(network.STA_IF)
-        if not sta_if.isconnected():
-            print('connecting to network...')
-            sta_if.active(True)
-            sta_if.connect(ssid, password)
-            while not sta_if.isconnected():
-                pass
-        print('network config:', sta_if.ifconfig())
-
     def check_for_update_to_install_during_next_reboot(self):
         current_version = self.get_version(self.modulepath(self.main_dir))
         latest_version = self.get_latest_version()
@@ -51,7 +40,7 @@ class OTAUpdater:
             print('No new updates found...')
 
     def _download_and_install_update(self, latest_version, ssid, password):
-        OTAUpdater.using_network(ssid, password)
+        networking.connect(ssid, password)
 
         self.download_all_files(self.github_repo + '/contents/' + self.main_dir, latest_version)
         self.rmtree(self.modulepath(self.main_dir))

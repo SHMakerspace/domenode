@@ -19,6 +19,11 @@ class Pixels:
 
     @staticmethod
     # Custom Animations
+
+    def pixset(pixel, r, g, b):
+        np[pixel] = (r, g, b)
+        np.write()
+
     def clear():
         # clear
         for i in range(n):

@@ -5,5 +5,9 @@ from machine import CAN
 bus = CAN(tx=5, rx=4, baudrate=500, mode=CAN.MODE_NO_ACK)
 
 # Send a self message
+def send_msg(message):
+    bus.send(message, 0x86)
+
+
 bus.send([0,1,2,3], 0x86, self_flag=True)
 bus.recv()
